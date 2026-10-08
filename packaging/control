@@ -19,4 +19,3 @@ Description: AniMe Matrix display tools for the ASUS ROG Strix Flare II Animate
   - GIF conversion tuned for the LED matrix (ImageMagick);
   - background gallery or clock as systemd user services, one-click toggle;
   - udev rule giving the logged-in user access to the keyboard.
- Support the project: https://buymeacoffee.com/anticitoyen

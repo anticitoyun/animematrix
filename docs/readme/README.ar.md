@@ -7,7 +7,6 @@
 [![الإصدار](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![رخصة MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 تحكم عبر Linux في شاشة **AniMe Matrix** (312 مصباح LED مصغر) الخاصة بلوحة المفاتيح **ASUS ROG Strix Flare II Animate**، دون Armoury Crate أو Windows: GIF ومعرض، ساعة، تأثيرات وأدوات تصور صوتي، ألعاب، مراقب النظام، إشعارات سطح المكتب، جدولة زمنية، محرر رسوم متحركة، مكتبة مشتركة، ألوان لوحة مفاتيح متزامنة.
 
@@ -346,12 +345,6 @@ packaging/build-deb.sh
 <a id="soutien"></a>
 
 ## دعم المشروع
-
-إذا كان هذا المشروع مفيدًا لك، فإن فنجان قهوة يساعد على صيانته:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=%D8%A7%D8%B4%D8%AA%D8%B1%D9%90%20%D9%84%D9%8A%20%D9%82%D9%87%D9%88%D8%A9&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — الرابط موجود أيضًا في تبويب *الإعدادات* في المُشغِّل.
 
 تقارير الأخطاء، الأفكار، والرسوم المتحركة المُراد مشاركتها: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). الترجمات: [docs/TRADUIRE.md](../TRADUIRE.md).
 

@@ -7,7 +7,6 @@
 [![Rilis](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![Lisensi MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 Mengendalikan layar **AniMe Matrix** (312 mini-LED) pada keyboard **ASUS ROG Strix Flare II Animate** di Linux, tanpa Armoury Crate maupun Windows: GIF dan galeri, jam, efek dan visualizer audio, permainan, monitor sistem, notifikasi desktop, penjadwalan waktu, editor animasi, pustaka bersama, warna keyboard yang tersinkron.
 
@@ -344,11 +343,5 @@ Proyek independen, tidak berafiliasi dengan ASUS. "ROG", "AniMe Matrix", dan "Ar
 <a id="soutien"></a>
 
 ## Mendukung proyek
-
-Jika proyek ini bermanfaat bagi Anda, secangkir kopi akan membantu perawatannya:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Belikan%20saya%20kopi&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — tautan ini juga tersedia di tab *Pengaturan* pada peluncur.
 
 Laporan bug, ide, dan animasi yang ingin dibagikan: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Terjemahan: [docs/TRADUIRE.md](../TRADUIRE.md).

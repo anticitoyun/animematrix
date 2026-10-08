@@ -7,7 +7,6 @@
 [![रिलीज़](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![MIT लाइसेंस](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 बिना Armoury Crate या Windows के, Linux पर **ASUS ROG Strix Flare II Animate** कीबोर्ड की **AniMe Matrix** स्क्रीन (312 मिनी-LED) को नियंत्रित करें: GIF और गैलरी, घड़ी, इफ़ेक्ट्स और ऑडियो विज़ुअलाइज़र, गेम्स, सिस्टम मॉनिटर, डेस्कटॉप नोटिफ़िकेशन, समय शेड्यूलिंग, एनिमेशन एडिटर, साझा लाइब्रेरी, सिंक्रोनाइज़्ड कीबोर्ड रंग।
 
@@ -344,11 +343,5 @@ packaging/build-deb.sh
 <a id="soutien"></a>
 
 ## प्रोजेक्ट को समर्थन दें
-
-अगर यह प्रोजेक्ट आपके काम आता है, तो एक कॉफ़ी इसे बनाए रखने में मदद करती है:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%8F%E0%A4%95%20%E0%A4%95%E0%A5%89%E0%A4%AB%E0%A4%BC%E0%A5%80%20%E0%A4%AA%E0%A4%BF%E0%A4%B2%E0%A4%BE%E0%A4%8F%E0%A4%81&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — यह लिंक लॉन्चर के *सेटिंग्स* टैब में भी मौजूद है।
 
 बग रिपोर्ट, विचार, और साझा करने के लिए एनिमेशन: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues)। अनुवाद: [docs/TRADUIRE.md](../TRADUIRE.md)।

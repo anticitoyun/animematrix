@@ -7,7 +7,6 @@
 [![Release](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![Ліцензія MIT](https://img.shields.io/badge/ліцензія-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-підтримати-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 Керування під Linux екраном **AniMe Matrix** (312 міні-світлодіодів) клавіатури **ASUS ROG Strix Flare II Animate**, без Armoury Crate та Windows: GIF і галерея, годинник, ефекти та аудіовізуалізатори, ігри, монітор системи, сповіщення робочого столу, розклад, редактор анімації, спільна бібліотека, синхронізовані кольори клавіатури.
 
@@ -344,11 +343,5 @@ packaging/build-deb.sh
 <a id="soutien"></a>
 
 ## Підтримати проєкт
-
-Якщо цей проєкт вам корисний, кава допоможе його підтримувати:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=%D0%9F%D1%80%D0%B8%D0%B3%D0%BE%D1%81%D1%82%D1%96%D1%82%D1%8C%20%D0%BC%D0%B5%D0%BD%D0%B5%20%D0%BA%D0%B0%D0%B2%D0%BE%D1%8E&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — посилання також є у вкладці *Налаштування* лаунчера.
 
 Звіти про помилки, ідеї та анімації, якими можна поділитися: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Переклади: [../TRADUIRE.md](../TRADUIRE.md).

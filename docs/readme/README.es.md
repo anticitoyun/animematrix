@@ -7,7 +7,6 @@
 [![Release](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![Licencia MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 Controla en Linux la pantalla **AniMe Matrix** (312 mini-LED) del teclado **ASUS ROG Strix Flare II Animate**, sin Armoury Crate ni Windows: GIF y galería, reloj, efectos y visualizadores de audio, juegos, monitor del sistema, notificaciones del escritorio, programación horaria, editor de animación, biblioteca compartida, colores del teclado sincronizados.
 
@@ -344,11 +343,5 @@ Proyecto independiente, no afiliado a ASUS. «ROG», «AniMe Matrix» y «Armour
 <a id="soutien"></a>
 
 ## Apoyar el proyecto
-
-Si este proyecto te resulta útil, un café ayuda a mantenerlo:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=C%C3%B3mprame%20un%20caf%C3%A9&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — el enlace también está en la pestaña *Ajustes* del lanzador.
 
 Informes de errores, ideas y animaciones para compartir: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Traducciones: [docs/TRADUIRE.md](../TRADUIRE.md).

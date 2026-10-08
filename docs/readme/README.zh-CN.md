@@ -7,7 +7,6 @@
 [![发布版本](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![MIT 许可证](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 在 Linux 下直接驱动 **ASUS ROG Strix Flare II Animate** 键盘的 **AniMe Matrix**（312 颗迷你 LED）屏幕，无需 Armoury Crate，也无需 Windows：GIF 与图库、时钟、动态效果与音频可视化、游戏、系统监视器、桌面通知、定时排程、动画编辑器、共享动画库、键盘颜色同步。
 
@@ -344,11 +343,5 @@ packaging/build-deb.sh
 <a id="soutien"></a>
 
 ## 支持本项目
-
-如果这个项目对你有帮助，一杯咖啡将有助于项目的持续维护：
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=%E8%AF%B7%E6%88%91%E5%96%9D%E6%9D%AF%E5%92%96%E5%95%A1&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** —— 该链接同样可以在启动器的 *设置* 标签页中找到。
 
 问题反馈、创意与动画分享：[Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues)。翻译：[TRADUIRE.md](../TRADUIRE.md)。

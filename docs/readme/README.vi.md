@@ -7,7 +7,6 @@
 [![Phát hành](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![Giấy phép MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 Điều khiển màn hình **AniMe Matrix** (312 mini-LED) của bàn phím **ASUS ROG Strix Flare II Animate** trên Linux, không cần Armoury Crate hay Windows: GIF và thư viện ảnh, đồng hồ, hiệu ứng và trình hiển thị âm thanh, trò chơi, giám sát hệ thống, thông báo màn hình nền, lên lịch theo khung giờ, trình chỉnh sửa hoạt ảnh, thư viện dùng chung, màu bàn phím đồng bộ.
 
@@ -344,11 +343,5 @@ Dự án độc lập, không liên kết với ASUS. "ROG", "AniMe Matrix" và 
 <a id="soutien"></a>
 
 ## Ủng hộ dự án
-
-Nếu dự án này hữu ích với bạn, một ly cà phê sẽ giúp duy trì nó:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Mời%20tôi%20một%20cốc%20cà%20phê&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — liên kết này cũng có trong tab *Cài đặt* của trình khởi chạy.
 
 Báo cáo lỗi, ý tưởng và hoạt ảnh muốn chia sẻ: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Bản dịch: [docs/TRADUIRE.md](../TRADUIRE.md).

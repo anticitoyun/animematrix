@@ -7,7 +7,6 @@
 [![릴리스](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![MIT 라이선스](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 Armoury Crate나 Windows 없이 리눅스에서 **ASUS ROG Strix Flare II Animate** 키보드의 **AniMe Matrix** 화면(312개 미니 LED)을 직접 제어합니다: GIF와 갤러리, 시계, 효과와 오디오 시각화, 게임, 시스템 모니터, 데스크톱 알림, 시간별 예약, 애니메이션 편집기, 공유 라이브러리, 동기화된 키보드 색상.
 
@@ -344,11 +343,5 @@ packaging/build-deb.sh
 <a id="soutien"></a>
 
 ## 프로젝트 후원
-
-이 프로젝트가 도움이 되었다면, 커피 한 잔이 유지 관리에 힘이 됩니다.
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=커피%20한%20잔%20사주기&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — 이 링크는 런처의 *설정* 탭에도 있습니다.
 
 버그 리포트, 아이디어, 공유하고 싶은 애니메이션: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). 번역: [docs/TRADUIRE.md](../TRADUIRE.md).

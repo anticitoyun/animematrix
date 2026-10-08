@@ -7,7 +7,6 @@
 [![Sürüm](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
 [![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
 [![MIT Lisansı](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-soutenir-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/anticitoyen)
 
 **ASUS ROG Strix Flare II Animate** klavyesinin **AniMe Matrix** ekranını (312 mini-LED) Linux üzerinden, Armoury Crate veya Windows olmadan yönetin: GIF ve galeri, saat, efektler ve ses görselleştiricileri, oyunlar, sistem monitörü, masaüstü bildirimleri, zaman programlama, animasyon düzenleyici, paylaşılan kütüphane, senkronize klavye renkleri.
 
@@ -344,11 +343,5 @@ Bu deponun kodu için [MIT](../../LICENSE); `bibliotheque/` içindeki animasyonl
 <a id="soutien"></a>
 
 ## Projeyi destekleyin
-
-Bu proje işinize yarıyorsa, bir kahve onu sürdürmeye yardımcı olur:
-
-[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Bir%20kahve%20%C4%B1smarla&emoji=☕&slug=anticitoyen&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/anticitoyen)
-
-**https://buymeacoffee.com/anticitoyen** — bağlantı, başlatıcının *Ayarlar* sekmesinde de bulunur.
 
 Hata bildirimleri, fikirler ve paylaşılacak animasyonlar: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Çeviriler: [docs/TRADUIRE.md](../TRADUIRE.md).

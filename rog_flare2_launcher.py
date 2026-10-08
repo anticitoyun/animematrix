@@ -47,7 +47,6 @@ GAME_NAMES = {g.name for g in GAMES}
 
 
 PROJECT_URL = "https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix"
-SUPPORT_URL = "https://buymeacoffee.com/anticitoyen"
 # Mode rejoué par le démon à l'ouverture de session (rog_flare2_demon.START_FILE)
 BOOT_MODES = {"Galerie GIF": "gif", "Horloge": "horloge", "Dernière lecture": "derniere", "Rien": "rien"}
 INTERFACE_FILE = CONFIG_DIR / "interface"
@@ -468,10 +467,8 @@ class LauncherApp(tk.Tk):
             ttk.Checkbutton(tab, text=_("Vérifier au démarrage"), variable=self.update_auto,
                             command=lambda: maj.save_state({**maj.load_state(), "auto": self.update_auto.get()})
                             ).pack(anchor="w")
-        ttk.Button(tab, text=_("☕ Soutenir le projet (Buy Me a Coffee)"),
-                   command=lambda: webbrowser.open(SUPPORT_URL)).pack(fill="x", pady=(8, 4))
         ttk.Button(tab, text=_("Page du projet (GitHub)"),
-                   command=lambda: webbrowser.open(PROJECT_URL)).pack(fill="x")
+                   command=lambda: webbrowser.open(PROJECT_URL)).pack(fill="x", pady=(8, 0))
         return tab
 
     def set_status(self, text: str):
