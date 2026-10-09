@@ -3,7 +3,7 @@ Version:        @VERSION@
 Release:        1%{?dist}
 Summary:        AniMe Matrix display tools for the ASUS ROG Strix Flare II Animate
 License:        MIT
-URL:            https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix
+URL:            https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix
 Source0:        %{url}/archive/v%{version}/Anticitoyen-ROG-flare2-anime-matrix-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python3
@@ -46,4 +46,4 @@ if [ $1 -eq 0 ]; then systemctl --global disable animematrixd.service >/dev/null
 
 %changelog
 * Fri Sep 25 2026 AntiCitoyen <anticitoyen@users.noreply.gitlab.com> - @VERSION@-1
-- See https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases
+- See https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases

@@ -4,8 +4,9 @@
 
 # 面向 Linux 的 AniMe Matrix — ROG Strix Flare II Animate
 
-[![发布版本](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![发布版本](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![MIT 许可证](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 在 Linux 下直接驱动 **ASUS ROG Strix Flare II Animate** 键盘的 **AniMe Matrix**（312 颗迷你 LED）屏幕，无需 Armoury Crate，也无需 Windows：GIF 与图库、时钟、动态效果与音频可视化、游戏、系统监视器、桌面通知、定时排程、动画编辑器、共享动画库、键盘颜色同步。
@@ -103,16 +104,16 @@ ASUS 仅在 Windows（通过 Armoury Crate）下为这款键盘提供 AniMe Matr
 ### APT 仓库（Debian、Ubuntu、Mint、Pop!_OS 等）——用 `apt upgrade` 更新
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 然后**拔下键盘再重新插上**（udev 规则会为当前登录用户授予访问权限），从菜单启动 **AniMe Matrix**。
 
-### 其他格式（见 [Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest) 页面）
+### 其他格式（见 [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest) 页面）
 
 | 系统 | 文件 | 安装方式 |
 |---|---|---|
@@ -138,7 +139,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ### 从源代码安装
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh` 可将本项目安装到任意目录树中；.deb、RPM（`packaging/rpm/`）、Arch 软件包（`packaging/aur/`）与 Flatpak（`packaging/flathub/`）均使用该脚本。每次发布新 release 时，GitHub 都会自动构建 RPM、Arch 软件包与 Flatpak，并更新已签名的 APT 仓库。版本号读取自 `rog_flare2_core.py`（`VERSION`）。测试：`python -m pytest tests`。
+`packaging/install.sh` 可将本项目安装到任意目录树中；.deb、RPM（`packaging/rpm/`）、Arch 软件包（`packaging/aur/`）与 Flatpak（`packaging/flathub/`）均使用该脚本。每次发布新 release 时，GitLab 都会自动构建 RPM、Arch 软件包与 Flatpak，并更新已签名的 APT 仓库。版本号读取自 `rog_flare2_core.py`（`VERSION`）。测试：`python -m pytest tests`。
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ packaging/build-deb.sh
 
 ## 支持本项目
 
-问题反馈、创意与动画分享：[Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues)。翻译：[TRADUIRE.md](../TRADUIRE.md)。
+如果本项目对你有帮助，欢迎支持：
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+这些链接同样可以在启动器的 *设置* 标签页中找到。
+
+问题反馈、创意与动画分享：[Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues)。翻译：[TRADUIRE.md](../TRADUIRE.md)。

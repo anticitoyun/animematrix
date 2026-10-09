@@ -4,8 +4,9 @@
 
 # Linux के लिए AniMe Matrix — ROG Strix Flare II Animate
 
-[![रिलीज़](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![रिलीज़](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![MIT लाइसेंस](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 बिना Armoury Crate या Windows के, Linux पर **ASUS ROG Strix Flare II Animate** कीबोर्ड की **AniMe Matrix** स्क्रीन (312 मिनी-LED) को नियंत्रित करें: GIF और गैलरी, घड़ी, इफ़ेक्ट्स और ऑडियो विज़ुअलाइज़र, गेम्स, सिस्टम मॉनिटर, डेस्कटॉप नोटिफ़िकेशन, समय शेड्यूलिंग, एनिमेशन एडिटर, साझा लाइब्रेरी, सिंक्रोनाइज़्ड कीबोर्ड रंग।
@@ -103,16 +104,16 @@ Ubuntu 26.04 (X11, PipeWire, Cinnamon) पर परीक्षण किया
 ### APT रिपॉज़िटरी (Debian, Ubuntu, Mint, Pop!_OS…) — `apt upgrade` से अपडेट
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 फिर **कीबोर्ड को निकालें और फिर से लगाएँ** (udev रूल लॉग-इन किए हुए यूज़र को एक्सेस देता है) और मेनू से **AniMe Matrix** लॉन्च करें।
 
-### अन्य फ़ॉर्मैट ([Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest) पेज)
+### अन्य फ़ॉर्मैट ([Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest) पेज)
 
 | सिस्टम | फ़ाइल | इंस्टॉलेशन |
 |---|---|---|
@@ -138,7 +139,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ### सोर्स से
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh` प्रोजेक्ट को किसी भी डायरेक्टरी स्ट्रक्चर में इंस्टॉल करता है; यह .deb, RPM (`packaging/rpm/`), Arch पैकेज (`packaging/aur/`) और Flatpak (`packaging/flathub/`) के लिए इस्तेमाल होता है। हर पब्लिश की गई रिलीज़ पर, GitHub RPM, Arch पैकेज और Flatpak बनाता है, और साइन किए गए APT रिपॉज़िटरी को अपडेट करता है। वर्ज़न `rog_flare2_core.py` (`VERSION`) से पढ़ा जाता है। टेस्ट: `python -m pytest tests`।
+`packaging/install.sh` प्रोजेक्ट को किसी भी डायरेक्टरी स्ट्रक्चर में इंस्टॉल करता है; यह .deb, RPM (`packaging/rpm/`), Arch पैकेज (`packaging/aur/`) और Flatpak (`packaging/flathub/`) के लिए इस्तेमाल होता है। हर पब्लिश की गई रिलीज़ पर, GitLab RPM, Arch पैकेज और Flatpak बनाता है, और साइन किए गए APT रिपॉज़िटरी को अपडेट करता है। वर्ज़न `rog_flare2_core.py` (`VERSION`) से पढ़ा जाता है। टेस्ट: `python -m pytest tests`।
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ packaging/build-deb.sh
 
 ## प्रोजेक्ट को समर्थन दें
 
-बग रिपोर्ट, विचार, और साझा करने के लिए एनिमेशन: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues)। अनुवाद: [docs/TRADUIRE.md](../TRADUIRE.md)।
+अगर यह प्रोजेक्ट आपके काम आता है, तो आप इसका समर्थन कर सकते हैं:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+ये लिंक लॉन्चर के *सेटिंग्स* टैब में भी मौजूद हैं।
+
+बग रिपोर्ट, विचार, और साझा करने के लिए एनिमेशन: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues)। अनुवाद: [docs/TRADUIRE.md](../TRADUIRE.md)।

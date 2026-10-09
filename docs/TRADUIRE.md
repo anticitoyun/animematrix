@@ -4,7 +4,7 @@ L'interface existe en 19 langues. Toute correction est bienvenue, et une nouvell
 
 ## Avec Weblate (le plus simple)
 
-Le projet est traduit en ligne sur **Hosted Weblate** : on corrige dans le navigateur, sans outil ni compte GitHub
+Le projet est traduit en ligne sur **Hosted Weblate** : on corrige dans le navigateur, sans outil ni compte GitLab
 (le lien apparaîtra ici et dans le README dès l'ouverture du projet). Weblate propose ensuite les changements au
 dépôt.
 
@@ -25,10 +25,10 @@ Nouvelle langue : copier `locale/en.json` en `locale/<code>.json`, traduire, ajo
 Sur <https://hosted.weblate.org> (offre gratuite « Libre » pour les projets sous licence libre) :
 
 1. Créer le projet **AniMe Matrix**, puis un composant **Interface** :
-   - dépôt : `https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git`, branche `main` ;
+   - dépôt : `https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git`, branche `main` ;
    - format : **JSON file** ; masque des fichiers : `locale/*.json` ;
    - fichier de base monolingue : `locale/_source.json` ; langue source : **français** ;
    - filtre des langues : `^[a-z]{2}(-[A-Z]{2})?$` (écarte `_source` et `_cles`).
-2. Envoi des traductions : « Demandes de fusion GitHub » (Weblate ouvre une demande de fusion), ou clé SSH de
+2. Envoi des traductions : « Demandes de fusion GitLab » (Weblate ouvre une demande de fusion), ou clé SSH de
    Weblate ajoutée comme clé de déploiement en écriture du dépôt.
 3. Ajouter le lien du projet et son badge dans le README.

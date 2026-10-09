@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Anticitoyen-ROG-flare2-anime-matrix
-Source: https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix
+Source: https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix
 
 Files: *
 Copyright: 2026 AntiCitoyen

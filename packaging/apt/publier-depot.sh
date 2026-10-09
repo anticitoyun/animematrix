@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ajoute un .deb au dépôt APT (dossier de la branche gh-pages) et régénère les index.
+# Ajoute un .deb au dépôt APT (dossier de la branche gh-pages, servie par GitLab Pages) et régénère les index.
 # Usage : packaging/apt/publier-depot.sh DOSSIER_DEPOT paquet.deb [ID_CLE_GPG]
 # Sans clé : dépôt non signé (à éviter). Avec clé : Release.gpg, InRelease et animematrix.gpg.
 set -euo pipefail

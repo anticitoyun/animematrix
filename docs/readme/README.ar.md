@@ -4,8 +4,9 @@
 
 # AniMe Matrix لِلينكس — ROG Strix Flare II Animate
 
-[![الإصدار](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![الإصدار](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![رخصة MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 تحكم عبر Linux في شاشة **AniMe Matrix** (312 مصباح LED مصغر) الخاصة بلوحة المفاتيح **ASUS ROG Strix Flare II Animate**، دون Armoury Crate أو Windows: GIF ومعرض، ساعة، تأثيرات وأدوات تصور صوتي، ألعاب، مراقب النظام، إشعارات سطح المكتب، جدولة زمنية، محرر رسوم متحركة، مكتبة مشتركة، ألوان لوحة مفاتيح متزامنة.
@@ -105,16 +106,16 @@
 ### مستودع APT (Debian، Ubuntu، Mint، Pop!_OS…) — تحديثات عبر `apt upgrade`
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 ثم **افصل لوحة المفاتيح ثم أعد توصيلها** (تمنح قاعدة udev الصلاحية للمستخدم المتصل) وشغّل **AniMe Matrix** من القائمة.
 
-### صيغ أخرى (صفحة [Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest))
+### صيغ أخرى (صفحة [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest))
 
 | النظام | الملف | التثبيت |
 |---|---|---|
@@ -140,7 +141,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ### من المصدر
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -323,7 +324,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-يثبّت `packaging/install.sh` المشروع في أي شجرة مجلدات؛ ويُستخدم لحزمة .deb، وRPM (`packaging/rpm/`)، وحزمة Arch (`packaging/aur/`)، وFlatpak (`packaging/flathub/`). عند كل إصدار يُنشر، يبني GitHub حزمة RPM وحزمة Arch وFlatpak، ويحدّث مستودع APT الموقَّع. تُقرأ نسخة الإصدار من `rog_flare2_core.py` (`VERSION`). الاختبارات: `python -m pytest tests`.
+يثبّت `packaging/install.sh` المشروع في أي شجرة مجلدات؛ ويُستخدم لحزمة .deb، وRPM (`packaging/rpm/`)، وحزمة Arch (`packaging/aur/`)، وFlatpak (`packaging/flathub/`). عند كل إصدار يُنشر، يبني GitLab حزمة RPM وحزمة Arch وFlatpak، ويحدّث مستودع APT الموقَّع. تُقرأ نسخة الإصدار من `rog_flare2_core.py` (`VERSION`). الاختبارات: `python -m pytest tests`.
 
 <a id="credits"></a>
 
@@ -346,6 +347,13 @@ packaging/build-deb.sh
 
 ## دعم المشروع
 
-تقارير الأخطاء، الأفكار، والرسوم المتحركة المُراد مشاركتها: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). الترجمات: [docs/TRADUIRE.md](../TRADUIRE.md).
+إذا كان هذا المشروع مفيدًا لك، يمكنك دعمه:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+الروابط موجودة أيضًا في تبويب *الإعدادات* في المُشغِّل.
+
+تقارير الأخطاء، الأفكار، والرسوم المتحركة المُراد مشاركتها: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). الترجمات: [docs/TRADUIRE.md](../TRADUIRE.md).
 
 </div>

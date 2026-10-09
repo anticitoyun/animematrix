@@ -4,8 +4,9 @@
 
 # AniMe Matrix для Linux — ROG Strix Flare II Animate
 
-[![Release](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![Ліцензія MIT](https://img.shields.io/badge/ліцензія-MIT-blue.svg)](../../LICENSE)
 
 Керування під Linux екраном **AniMe Matrix** (312 міні-світлодіодів) клавіатури **ASUS ROG Strix Flare II Animate**, без Armoury Crate та Windows: GIF і галерея, годинник, ефекти та аудіовізуалізатори, ігри, монітор системи, сповіщення робочого столу, розклад, редактор анімації, спільна бібліотека, синхронізовані кольори клавіатури.
@@ -103,16 +104,16 @@ ASUS надає доступ до екрана AniMe Matrix цієї клаві�
 ### Репозиторій APT (Debian, Ubuntu, Mint, Pop!_OS…) — оновлення через `apt upgrade`
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 Потім **відключіть і знову підключіть клавіатуру** (правило udev надає доступ користувачу, що увійшов у сесію) і запустіть **AniMe Matrix** з меню.
 
-### Інші формати (сторінка [Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest))
+### Інші формати (сторінка [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest))
 
 | Система | Файл | Встановлення |
 |---|---|---|
@@ -138,7 +139,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ### З джерельного коду
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh` встановлює проєкт у будь-яку структуру каталогів; він використовується для .deb, RPM (`packaging/rpm/`), пакета Arch (`packaging/aur/`) і Flatpak (`packaging/flathub/`). При кожному опублікованому релізі GitHub збирає RPM, пакет Arch і Flatpak, а також оновлює підписаний репозиторій APT. Версія зчитується з `rog_flare2_core.py` (`VERSION`). Тести: `python -m pytest tests`.
+`packaging/install.sh` встановлює проєкт у будь-яку структуру каталогів; він використовується для .deb, RPM (`packaging/rpm/`), пакета Arch (`packaging/aur/`) і Flatpak (`packaging/flathub/`). При кожному опублікованому релізі GitLab збирає RPM, пакет Arch і Flatpak, а також оновлює підписаний репозиторій APT. Версія зчитується з `rog_flare2_core.py` (`VERSION`). Тести: `python -m pytest tests`.
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ packaging/build-deb.sh
 
 ## Підтримати проєкт
 
-Звіти про помилки, ідеї та анімації, якими можна поділитися: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Переклади: [../TRADUIRE.md](../TRADUIRE.md).
+Якщо проєкт вам корисний, його можна підтримати:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+Посилання також є у вкладці *Налаштування* лаунчера.
+
+Звіти про помилки, ідеї та анімації, якими можна поділитися: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). Переклади: [../TRADUIRE.md](../TRADUIRE.md).

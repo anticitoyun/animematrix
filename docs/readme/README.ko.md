@@ -4,8 +4,9 @@
 
 # 리눅스용 AniMe Matrix — ROG Strix Flare II Animate
 
-[![릴리스](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![릴리스](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![MIT 라이선스](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 Armoury Crate나 Windows 없이 리눅스에서 **ASUS ROG Strix Flare II Animate** 키보드의 **AniMe Matrix** 화면(312개 미니 LED)을 직접 제어합니다: GIF와 갤러리, 시계, 효과와 오디오 시각화, 게임, 시스템 모니터, 데스크톱 알림, 시간별 예약, 애니메이션 편집기, 공유 라이브러리, 동기화된 키보드 색상.
@@ -103,16 +104,16 @@ Ubuntu 26.04(X11, PipeWire, Cinnamon)에서 테스트되었습니다. Python ≥
 ### APT 저장소 (Debian, Ubuntu, Mint, Pop!_OS 등) — `apt upgrade`로 업데이트
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 그다음 **키보드를 분리했다가 다시 연결하고**(udev 규칙이 로그인한 사용자에게 접근 권한을 부여합니다) 메뉴에서 **AniMe Matrix**를 실행하세요.
 
-### 그 밖의 형식 ([Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest) 페이지)
+### 그 밖의 형식 ([Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest) 페이지)
 
 | 시스템 | 파일 | 설치 |
 |---|---|---|
@@ -138,7 +139,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ### 소스에서 빌드
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh`는 프로젝트를 임의의 디렉터리 구조에 설치하며, .deb, RPM(`packaging/rpm/`), Arch 패키지(`packaging/aur/`), Flatpak(`packaging/flathub/`)에 공통으로 사용됩니다. 릴리스가 게시될 때마다 GitHub가 RPM, Arch 패키지, Flatpak을 빌드하고 서명된 APT 저장소를 업데이트합니다. 버전은 `rog_flare2_core.py`(`VERSION`)에서 읽어옵니다. 테스트: `python -m pytest tests`.
+`packaging/install.sh`는 프로젝트를 임의의 디렉터리 구조에 설치하며, .deb, RPM(`packaging/rpm/`), Arch 패키지(`packaging/aur/`), Flatpak(`packaging/flathub/`)에 공통으로 사용됩니다. 릴리스가 게시될 때마다 GitLab가 RPM, Arch 패키지, Flatpak을 빌드하고 서명된 APT 저장소를 업데이트합니다. 버전은 `rog_flare2_core.py`(`VERSION`)에서 읽어옵니다. 테스트: `python -m pytest tests`.
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ packaging/build-deb.sh
 
 ## 프로젝트 후원
 
-버그 리포트, 아이디어, 공유하고 싶은 애니메이션: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). 번역: [docs/TRADUIRE.md](../TRADUIRE.md).
+이 프로젝트가 도움이 되었다면 후원해 주세요:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+이 링크들은 런처의 *설정* 탭에도 있습니다.
+
+버그 리포트, 아이디어, 공유하고 싶은 애니메이션: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). 번역: [docs/TRADUIRE.md](../TRADUIRE.md).

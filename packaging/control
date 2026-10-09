@@ -8,7 +8,7 @@ Depends: python3 (>= 3.10), python3-hid, python3-pil, python3-pil.imagetk, pytho
 Suggests: gstreamer1.0-pipewire, gir1.2-gstreamer-1.0
 Recommends: python3-xlib, pkexec, python3-gi, gir1.2-ayatanaappindicator3-0.1, imagemagick, pulseaudio-utils, zenity, python3-pynput, python3-evdev, x11-utils, python3-qrcode, ffmpeg, tkdnd, libnotify-bin, xdg-user-dirs
 Maintainer: AntiCitoyen <anticitoyen@users.noreply.gitlab.com>
-Homepage: https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix
+Homepage: https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix
 Description: AniMe Matrix display tools for the ASUS ROG Strix Flare II Animate
  Linux tools for the 312-LED AniMe Matrix display of the ASUS ROG Strix
  Flare II Animate keyboard (USB 0b05:19fc), without Armoury Crate:
@@ -19,3 +19,5 @@ Description: AniMe Matrix display tools for the ASUS ROG Strix Flare II Animate
   - GIF conversion tuned for the LED matrix (ImageMagick);
   - background gallery or clock as systemd user services, one-click toggle;
   - udev rule giving the logged-in user access to the keyboard.
+ Support the project: https://fr.tipeee.com/anticitoyen/ or
+ https://www.paypal.biz/C2N

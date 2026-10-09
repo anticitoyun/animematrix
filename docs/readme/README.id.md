@@ -4,8 +4,9 @@
 
 # AniMe Matrix untuk Linux — ROG Strix Flare II Animate
 
-[![Rilis](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![Rilis](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![Lisensi MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 Mengendalikan layar **AniMe Matrix** (312 mini-LED) pada keyboard **ASUS ROG Strix Flare II Animate** di Linux, tanpa Armoury Crate maupun Windows: GIF dan galeri, jam, efek dan visualizer audio, permainan, monitor sistem, notifikasi desktop, penjadwalan waktu, editor animasi, pustaka bersama, warna keyboard yang tersinkron.
@@ -103,16 +104,16 @@ Telah diuji pada Ubuntu 26.04 (X11, PipeWire, Cinnamon). Distribusi apa pun deng
 ### Repositori APT (Debian, Ubuntu, Mint, Pop!_OS…) — pembaruan dengan `apt upgrade`
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 Kemudian **cabut lalu pasang kembali keyboard** (aturan udev memberikan akses kepada pengguna yang sedang login) dan jalankan **AniMe Matrix** dari menu.
 
-### Format lain (halaman [Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest))
+### Format lain (halaman [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest))
 
 | Sistem | Berkas | Instalasi |
 |---|---|---|
@@ -138,7 +139,7 @@ Paket ini menginstal:
 ### Dari sumber
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh` memasang proyek ini ke struktur direktori mana pun; skrip ini digunakan untuk .deb, RPM (`packaging/rpm/`), paket Arch (`packaging/aur/`), dan Flatpak (`packaging/flathub/`). Setiap kali rilis baru diterbitkan, GitHub membangun RPM, paket Arch, dan Flatpak, lalu memperbarui repositori APT yang ditandatangani. Nomor versi dibaca dari `rog_flare2_core.py` (`VERSION`). Pengujian: `python -m pytest tests`.
+`packaging/install.sh` memasang proyek ini ke struktur direktori mana pun; skrip ini digunakan untuk .deb, RPM (`packaging/rpm/`), paket Arch (`packaging/aur/`), dan Flatpak (`packaging/flathub/`). Setiap kali rilis baru diterbitkan, GitLab membangun RPM, paket Arch, dan Flatpak, lalu memperbarui repositori APT yang ditandatangani. Nomor versi dibaca dari `rog_flare2_core.py` (`VERSION`). Pengujian: `python -m pytest tests`.
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ Proyek independen, tidak berafiliasi dengan ASUS. "ROG", "AniMe Matrix", dan "Ar
 
 ## Mendukung proyek
 
-Laporan bug, ide, dan animasi yang ingin dibagikan: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Terjemahan: [docs/TRADUIRE.md](../TRADUIRE.md).
+Jika proyek ini bermanfaat bagi Anda, Anda dapat mendukungnya:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+Tautan ini juga tersedia di tab *Pengaturan* pada peluncur.
+
+Laporan bug, ide, dan animasi yang ingin dibagikan: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). Terjemahan: [docs/TRADUIRE.md](../TRADUIRE.md).

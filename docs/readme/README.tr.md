@@ -4,8 +4,9 @@
 
 # Linux için AniMe Matrix — ROG Strix Flare II Animate
 
-[![Sürüm](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![Sürüm](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![MIT Lisansı](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 **ASUS ROG Strix Flare II Animate** klavyesinin **AniMe Matrix** ekranını (312 mini-LED) Linux üzerinden, Armoury Crate veya Windows olmadan yönetin: GIF ve galeri, saat, efektler ve ses görselleştiricileri, oyunlar, sistem monitörü, masaüstü bildirimleri, zaman programlama, animasyon düzenleyici, paylaşılan kütüphane, senkronize klavye renkleri.
@@ -103,16 +104,16 @@ Ubuntu 26.04 (X11, PipeWire, Cinnamon) üzerinde test edildi. Python ≥ 3.10, h
 ### APT deposu (Debian, Ubuntu, Mint, Pop!_OS…) — `apt upgrade` ile güncellemeler
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 Ardından **klavyeyi çıkarıp yeniden takın** (udev kuralı, oturum açmış kullanıcıya erişim verir) ve menüden **AniMe Matrix**'i başlatın.
 
-### Diğer biçimler ([Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest) sayfası)
+### Diğer biçimler ([Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest) sayfası)
 
 | Sistem | Dosya | Kurulum |
 |---|---|---|
@@ -138,7 +139,7 @@ Paket şunları kurar:
 ### Kaynak koddan
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh`, projeyi herhangi bir dizin ağacına kurar; .deb, RPM (`packaging/rpm/`), Arch paketi (`packaging/aur/`) ve Flatpak (`packaging/flathub/`) için kullanılır. Her yayımlanan sürümde GitHub, RPM'i, Arch paketini ve Flatpak'ı oluşturur ve imzalı APT deposunu günceller. Sürüm numarası `rog_flare2_core.py` (`VERSION`) içinden okunur. Testler: `python -m pytest tests`.
+`packaging/install.sh`, projeyi herhangi bir dizin ağacına kurar; .deb, RPM (`packaging/rpm/`), Arch paketi (`packaging/aur/`) ve Flatpak (`packaging/flathub/`) için kullanılır. Her yayımlanan sürümde GitLab, RPM'i, Arch paketini ve Flatpak'ı oluşturur ve imzalı APT deposunu günceller. Sürüm numarası `rog_flare2_core.py` (`VERSION`) içinden okunur. Testler: `python -m pytest tests`.
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ Bu deponun kodu için [MIT](../../LICENSE); `bibliotheque/` içindeki animasyonl
 
 ## Projeyi destekleyin
 
-Hata bildirimleri, fikirler ve paylaşılacak animasyonlar: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Çeviriler: [docs/TRADUIRE.md](../TRADUIRE.md).
+Bu proje işinize yarıyorsa onu destekleyebilirsiniz:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+Bağlantılar, başlatıcının *Ayarlar* sekmesinde de bulunur.
+
+Hata bildirimleri, fikirler ve paylaşılacak animasyonlar: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). Çeviriler: [docs/TRADUIRE.md](../TRADUIRE.md).

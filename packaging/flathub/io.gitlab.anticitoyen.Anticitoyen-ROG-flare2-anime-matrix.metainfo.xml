@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.anticitoyen.Anticitoyen-ROG-flare2-anime-matrix</id>
+  <id>io.gitlab.anticitoyen.Anticitoyen-ROG-flare2-anime-matrix</id>
   <name>AniMe Matrix</name>
   <summary>Control the LED display of the ROG Strix Flare II Animate keyboard</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-  <developer id="io.github.anticitoyen"><name>AntiCitoyen</name></developer>
+  <developer id="io.gitlab.anticitoyen"><name>AntiCitoyen</name></developer>
   <description>
     <p>AniMe Matrix drives the 312-LED AniMe Matrix display of the ASUS ROG Strix Flare II Animate keyboard (USB 0b05:19fc).</p>
     <ul>
@@ -16,10 +16,11 @@
     </ul>
     <p>The udev rule giving access to the keyboard must be installed on the host: see the project page.</p>
   </description>
-  <launchable type="desktop-id">io.github.anticitoyen.Anticitoyen-ROG-flare2-anime-matrix.desktop</launchable>
-  <url type="homepage">https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix</url>
-  <url type="bugtracker">https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues</url>
-  <url type="vcs-browser">https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix</url>
+  <launchable type="desktop-id">io.gitlab.anticitoyen.Anticitoyen-ROG-flare2-anime-matrix.desktop</launchable>
+  <url type="homepage">https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix</url>
+  <url type="bugtracker">https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues</url>
+  <url type="vcs-browser">https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix</url>
+  <url type="donation">https://fr.tipeee.com/anticitoyen/</url>
   <branding>
     <color type="primary" scheme_preference="light">#f2c6cc</color>
     <color type="primary" scheme_preference="dark">#5a0d17</color>
@@ -27,15 +28,15 @@
   <screenshots>
     <screenshot type="default">
       <caption>Dial and drawer interface</caption>
-      <image>https://raw.githubusercontent.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/main/docs/captures/en/interface-drawer.png</image>
+      <image>https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/raw/main/docs/captures/en/interface-drawer.png</image>
     </screenshot>
     <screenshot>
       <caption>Classic interface</caption>
-      <image>https://raw.githubusercontent.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/main/docs/captures/en/interface-classic.png</image>
+      <image>https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/raw/main/docs/captures/en/interface-classic.png</image>
     </screenshot>
     <screenshot>
       <caption>Themes</caption>
-      <image>https://raw.githubusercontent.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/main/docs/captures/themes-en.png</image>
+      <image>https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/raw/main/docs/captures/themes-en.png</image>
     </screenshot>
   </screenshots>
   <requires><display_length compare="ge">640</display_length></requires>

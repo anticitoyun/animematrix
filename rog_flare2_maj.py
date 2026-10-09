@@ -1,7 +1,7 @@
-"""Mises à jour d'AniMe Matrix depuis les releases GitHub du projet.
+"""Mises à jour d'AniMe Matrix depuis les releases GitLab du projet.
 
 latest() interroge l'API publique (sans compte) ; download() récupère le .deb
-de la release et vérifie son empreinte SHA-256 publiée par GitHub ; install()
+de la release et vérifie son empreinte SHA-256 calculée par GitLab ; install()
 l'installe avec les droits administrateur via pkexec (apt-get, sinon dpkg).
 
     rog_flare2_maj.py            affiche la dernière version et si elle est plus récente
@@ -19,9 +19,12 @@ from pathlib import Path
 
 from rog_flare2_i18n import _
 
-REPO = "AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix"
-API = f"https://api.github.com/repos/{REPO}/releases/latest"
-RELEASES_URL = f"https://github.com/{REPO}/releases"
+REPO = "anticitoyen/Anticitoyen-ROG-flare2-anime-matrix"
+PROJECT_API = "https://gitlab.com/api/v4/projects/" + REPO.replace("/", "%2F")
+API = f"{PROJECT_API}/releases/permalink/latest"
+RELEASES_URL = f"https://gitlab.com/{REPO}/-/releases"
+# fichier du registre générique : …/projects/<id>/packages/generic/<paquet>/<version>/<fichier>
+GENERIC_FILE = re.compile(r"/projects/(\d+)/packages/generic/([^/]+)/([^/]+)/([^/?#]+)$")
 CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "animematrix"
 STATE_FILE = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "rog-flare2" / "maj.json"
 CHECK_EVERY = 24 * 3600  # vérification automatique : au plus une fois par jour
@@ -36,21 +39,45 @@ def packaged() -> bool:
     return str(Path(__file__).resolve()).startswith("/usr/share/")
 
 
+def _get_json(url: str, current: str, timeout: float):
+    req = urllib.request.Request(url, headers={"User-Agent": f"animematrix/{current}"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.load(r)
+
+
+def package_sha256(url: str, current: str, timeout: float = 8) -> str | None:
+    """Empreinte SHA-256 calculée par GitLab pour un fichier du registre générique du projet."""
+    m = GENERIC_FILE.search(url)
+    if not m:
+        return None
+    pid, name, version, filename = m.groups()
+    base = f"https://gitlab.com/api/v4/projects/{pid}/packages"
+    packages = _get_json(f"{base}?package_type=generic&package_name={name}&package_version={version}",
+                         current, timeout)
+    for pkg in packages:
+        for f in _get_json(f"{base}/{pkg['id']}/package_files?per_page=100", current, timeout):
+            if f.get("file_name") == filename:
+                return f.get("file_sha256")
+    return None
+
+
 def latest(current: str, timeout: float = 8) -> dict:
     """Dernière release : version, page, notes, .deb (url, nom, sha256) ; lève OSError hors ligne."""
-    req = urllib.request.Request(API, headers={"Accept": "application/vnd.github+json",
-                                               "User-Agent": f"animematrix/{current}"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        data = json.load(r)
-    deb = next((a for a in data.get("assets", []) if a["name"].endswith("_all.deb")), None)
-    digest = (deb or {}).get("digest") or ""
+    data = _get_json(API, current, timeout)
+    links = (data.get("assets") or {}).get("links") or []
+    deb = next((a for a in links if a["name"].endswith("_all.deb")), None)
+    deb_url = (deb.get("direct_asset_url") or deb["url"]) if deb else None
+    try:
+        sha256 = package_sha256(deb["url"], current, timeout) if deb else None
+    except (OSError, ValueError, KeyError, TypeError):
+        sha256 = None
     return {
         "version": data["tag_name"].lstrip("v"),
-        "page": data.get("html_url", RELEASES_URL),
-        "notes": data.get("body") or "",
-        "deb_url": deb["browser_download_url"] if deb else None,
+        "page": (data.get("_links") or {}).get("self", RELEASES_URL),
+        "notes": data.get("description") or "",
+        "deb_url": deb_url,
         "deb_name": deb["name"] if deb else None,
-        "sha256": digest.split(":", 1)[1] if digest.startswith("sha256:") else None,
+        "sha256": sha256,
     }
 
 

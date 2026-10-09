@@ -6,20 +6,20 @@
 
 AniMe Matrix for Linux drives the AniMe Matrix display (312 mini-LEDs) and the key lighting of the ASUS ROG Strix
 Flare II Animate keyboard, without Armoury Crate or Windows: launcher, `animematrixd` daemon, effects, packages.
-Bug reports, USB captures of the keyboard, translations, effects, ideas and pull requests are all welcome.
+Bug reports, USB captures of the keyboard, translations, effects, ideas and merge requests are all welcome.
 
-- Quick feedback on an idea or a bug: open an [issue](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues).
+- Quick feedback on an idea or a bug: open an [issue](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues).
 - Security problems: do **not** open an issue, follow [`SECURITY.md`](SECURITY.md).
 - Translations: [`docs/TRADUIRE.md`](docs/TRADUIRE.md) (19 languages, JSON catalogues in `locale/`).
-- A new effect does not need a pull request: it can ship as an extension, see [`docs/EXTENSIONS.md`](docs/EXTENSIONS.md).
+- A new effect does not need a merge request: it can ship as an extension, see [`docs/EXTENSIONS.md`](docs/EXTENSIONS.md).
 
 ### Contribution workflow
 
-The project uses the fork-and-pull model.
+The project uses the fork and merge request model.
 
 1. In your fork, create a branch with a meaningful name.
 2. Make your change, meeting the [quality standards](#quality-standards) below.
-3. Open a pull request against `main`.
+3. Open a merge request against `main`.
 4. A maintainer reviews it. Address every comment; amend your commits and force-push your branch rather than
    stacking "fix review" commits.
 5. Once approved, a maintainer merges it. Your commits keep your authorship.
@@ -29,8 +29,8 @@ packages, release notes) are made by a maintainer.
 
 ### Request for comments
 
-To get feedback on a direction before writing the whole thing, open a pull request whose title starts with `[RFC]`,
-based on the current code. Write down in the pull request what was concluded.
+To get feedback on a direction before writing the whole thing, open a merge request whose title starts with `[RFC]`,
+based on the current code. Write down in the merge request what was concluded.
 
 ### Quality standards
 
@@ -38,7 +38,7 @@ The repository is written in **French**: comments, docstrings, documentation and
 may stay in English. If French is a barrier, write in English and a maintainer will translate — the content matters
 more than the language.
 
-Before opening a pull request (system packages used by the CI: `xvfb xdotool imagemagick lintian dbus python3-gi`):
+Before opening a merge request (system packages used by the CI: `xvfb xdotool imagemagick lintian dbus python3-gi`):
 
 ```bash
 python3 -m venv .venv
@@ -74,7 +74,7 @@ Your contribution must meet these standards:
 - **Comments explain why**, especially where a decision looks arbitrary.
 - **No personal data** in tracked files: no home paths (`/home/<name>`), e-mail addresses, tokens or keyboard serial
   numbers; USB captures you share must not contain anything else.
-- **Explain your pull request**: the reasoning behind each change and the testing done (distribution, X11 or
+- **Explain your merge request**: the reasoning behind each change and the testing done (distribution, X11 or
   Wayland, keyboard firmware if you tested on the hardware).
 - **You answer for every line you submit**, whatever tools helped you write it.
 
@@ -126,7 +126,7 @@ AniMe Matrix pour Linux pilote l'écran AniMe Matrix (312 mini-LED) et l'éclair
 Strix Flare II Animate, sans Armoury Crate ni Windows : lanceur, démon `animematrixd`, effets, paquets. Rapports de
 bogue, captures USB du clavier, traductions, effets, idées et demandes de fusion sont les bienvenus.
 
-- Avis rapide sur une idée ou un bogue : ouvrez un [ticket](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues).
+- Avis rapide sur une idée ou un bogue : ouvrez un [ticket](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues).
 - Problème de sécurité : n'ouvrez **pas** de ticket, suivez [`SECURITY.md`](SECURITY.md).
 - Traductions : [`docs/TRADUIRE.md`](docs/TRADUIRE.md) (19 langues, catalogues JSON dans `locale/`).
 - Un nouvel effet n'a pas besoin de demande de fusion : il peut vivre en extension, voir
@@ -134,11 +134,11 @@ bogue, captures USB du clavier, traductions, effets, idées et demandes de fusio
 
 ### Déroulement
 
-Le projet suit le modèle « fork and pull ».
+Le projet suit le modèle « fork et demande de fusion ».
 
 1. Dans votre fork, créez une branche au nom parlant.
 2. Faites votre changement en respectant les [exigences de qualité](#exigences-de-qualité) ci-dessous.
-3. Ouvrez une demande de fusion (pull request) vers `main`.
+3. Ouvrez une demande de fusion (merge request) vers `main`.
 4. Une personne de l'équipe la relit. Répondez à chaque remarque ; modifiez vos commits et repoussez votre branche
    (push forcé) plutôt que d'empiler des commits « correction de relecture ».
 5. Une fois acceptée, elle est fusionnée par l'équipe. Vos commits gardent leur auteur.

@@ -4,8 +4,9 @@
 
 # Linux 向け AniMe Matrix — ROG Strix Flare II Animate
 
-[![リリース](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![リリース](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![MIT ライセンス](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 **ASUS ROG Strix Flare II Animate** キーボードの **AniMe Matrix**(312 個のミニ LED)ディスプレイを、Armoury Crate も Windows も使わずに Linux 上で直接制御します。GIF とギャラリー、時計、エフェクトとオーディオビジュアライザー、ゲーム、システムモニター、デスクトップ通知、スケジュール機能、アニメーションエディター、共有アニメーションライブラリ、キーボードの色の同期。
@@ -103,16 +104,16 @@ Ubuntu 26.04(X11、PipeWire、Cinnamon)で動作確認済み。Python ≥ 3.10�
 ### APT リポジトリ(Debian、Ubuntu、Mint、Pop!_OS など)— `apt upgrade` でアップデート
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 その後、**キーボードを抜いてから再度接続**し(udev ルールによりログイン中のユーザーにアクセス権が付与されます)、メニューから **AniMe Matrix** を起動します。
 
-### その他の形式([Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest) ページ)
+### その他の形式([Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest) ページ)
 
 | システム | ファイル | インストール方法 |
 |---|---|---|
@@ -138,7 +139,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ### ソースから
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh` は本プロジェクトを任意のディレクトリツリーにインストールします。この仕組みは .deb、RPM(`packaging/rpm/`)、Arch パッケージ(`packaging/aur/`)、Flatpak(`packaging/flathub/`)で使われています。リリースが公開されるたびに、GitHub が RPM、Arch パッケージ、Flatpak をビルドし、署名済みの APT リポジトリを更新します。バージョンは `rog_flare2_core.py`(`VERSION`)から読み取られます。テスト:`python -m pytest tests`。
+`packaging/install.sh` は本プロジェクトを任意のディレクトリツリーにインストールします。この仕組みは .deb、RPM(`packaging/rpm/`)、Arch パッケージ(`packaging/aur/`)、Flatpak(`packaging/flathub/`)で使われています。リリースが公開されるたびに、GitLab が RPM、Arch パッケージ、Flatpak をビルドし、署名済みの APT リポジトリを更新します。バージョンは `rog_flare2_core.py`(`VERSION`)から読み取られます。テスト:`python -m pytest tests`。
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ packaging/build-deb.sh
 
 ## プロジェクトを支援する
 
-バグ報告、アイデア、アニメーションの共有:[Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues)。翻訳:[TRADUIRE.md](../TRADUIRE.md)。
+このプロジェクトが役に立ったら、支援していただけます：
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+これらのリンクはランチャーの *設定* タブにもあります。
+
+バグ報告、アイデア、アニメーションの共有:[Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues)。翻訳:[TRADUIRE.md](../TRADUIRE.md)。

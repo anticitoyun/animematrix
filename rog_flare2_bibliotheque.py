@@ -1,9 +1,9 @@
 """Bibliothèque communautaire d'animations pour l'AniMe Matrix.
 
-Le catalogue (bibliotheque/catalogue.json du dépôt GitHub) liste des GIF 19 × 24
+Le catalogue (bibliotheque/catalogue.json du dépôt GitLab) liste des GIF 19 × 24
 avec leur empreinte SHA-256 ; le lanceur les montre, les télécharge (empreinte
 vérifiée), les joue sur le clavier ou les ajoute à la galerie. Partager une
-animation : formulaire de ticket GitHub (aucun compte à configurer ici).
+animation : modèle de ticket GitLab (aucun compte à configurer ici).
 """
 from __future__ import annotations
 
@@ -20,8 +20,8 @@ from rog_flare2_core import VERSION, gallery_dir
 from rog_flare2_i18n import LANG, _
 from rog_flare2_maj import CACHE_DIR, REPO
 
-BASE_URL = f"https://raw.githubusercontent.com/{REPO}/main/bibliotheque/"
-SHARE_URL = f"https://github.com/{REPO}/issues/new?template=partage-animation.yml"
+BASE_URL = f"https://gitlab.com/{REPO}/-/raw/main/bibliotheque/"
+SHARE_URL = f"https://gitlab.com/{REPO}/-/issues/new?issuable_template=partage-animation"
 LIB_CACHE = CACHE_DIR / "bibliotheque"
 
 

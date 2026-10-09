@@ -5,7 +5,7 @@
 ### Supported versions
 
 Only the latest release receives security fixes. Please update first (*Settings → Check for updates*,
-`sudo apt update && sudo apt upgrade`, or the [Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest) page) and check that the problem is still there.
+`sudo apt update && sudo apt upgrade`, or the [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest) page) and check that the problem is still there.
 
 | Version | Supported |
 |---|---|
@@ -14,15 +14,15 @@ Only the latest release receives security fixes. Please update first (*Settings 
 
 ### Reporting a vulnerability
 
-**Please do not open a public issue.** Use GitHub's private reporting instead:
-[Report a vulnerability](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/security/advisories/new)
-(tab *Security → Report a vulnerability*).
+**Please do not open a public issue.** Open a confidential issue instead (visible only to the maintainer):
+[Report a vulnerability](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues/new?issue[confidential]=true)
+(check *This issue is confidential* if it is not already checked).
 
 Please include the version, your distribution and desktop session (X11 or Wayland), the steps to
 reproduce, and what an attacker could achieve. You can write in English or French.
 
 What to expect: an acknowledgement within 7 days, an assessment within 14 days, and for a confirmed
-issue a fixed release as soon as possible, published with a GitHub security advisory crediting you
+issue a fixed release as soon as possible, published with a security note crediting you
 (unless you prefer not to be named).
 
 ### Scope
@@ -49,7 +49,7 @@ your rights, by design), physical access to the computer, and vulnerabilities in
 
 Seule la dernière version reçoit les correctifs de sécurité. Mettez d'abord à jour (*Réglages →
 Rechercher les mises à jour*, `sudo apt update && sudo apt upgrade`, ou la page
-[Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)) et vérifiez que le problème existe toujours.
+[Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)) et vérifiez que le problème existe toujours.
 
 | Version | Prise en charge |
 |---|---|
@@ -58,15 +58,15 @@ Rechercher les mises à jour*, `sudo apt update && sudo apt upgrade`, ou la page
 
 ### Signaler une faille
 
-**Merci de ne pas ouvrir de ticket public.** Utilisez le signalement privé de GitHub :
-[Signaler une faille](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/security/advisories/new)
-(onglet *Security → Report a vulnerability*).
+**Merci de ne pas ouvrir de ticket public.** Ouvrez plutôt un ticket confidentiel (visible du seul mainteneur) :
+[Signaler une faille](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues/new?issue[confidential]=true)
+(cochez *Ce ticket est confidentiel* s'il ne l'est pas déjà).
 
 Indiquez la version, votre distribution et votre session (X11 ou Wayland), les étapes pour reproduire
 et ce qu'un attaquant pourrait obtenir. En français ou en anglais.
 
 Ce qui suit : un accusé de réception sous 7 jours, une évaluation sous 14 jours et, pour une faille
-confirmée, une version corrigée dès que possible, publiée avec un avis de sécurité GitHub qui vous
+confirmée, une version corrigée dès que possible, publiée avec une note de sécurité qui vous
 cite (sauf si vous préférez rester anonyme).
 
 ### Périmètre

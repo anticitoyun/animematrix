@@ -1,0 +1,208 @@
+# CI GitLab : tests à chaque envoi ; à chaque tag vX.Y.Z, construction de tous les paquets,
+# dépôt dans le registre générique du projet, création de la release et du dépôt APT (GitLab Pages).
+# Notes de version : packaging/notes/<tag>.md (sinon texte par défaut).
+# Variable CI à définir (Réglages → CI/CD → Variables, protégée, type « fichier » ou texte) :
+# APT_GPG_PRIVATE_KEY = clé privée qui signe le dépôt APT ; sans elle, le dépôt APT n'est pas republié.
+
+stages: [test, package, release]
+
+variables:
+  PKG: anticitoyen-rog-flare2-anime-matrix
+  APP: io.gitlab.anticitoyen.Anticitoyen-ROG-flare2-anime-matrix
+  GENERIC: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/animematrix
+
+.on_tag:
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/
+
+# Dépôt d'un fichier dans le registre générique : upload FICHIER
+.upload: &upload |
+  upload() { curl -fsS --retry 3 --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "$1" "$GENERIC/${CI_COMMIT_TAG#v}/$(basename "$1")" >/dev/null && echo "envoyé : $(basename "$1")"; }
+
+tests:
+  stage: test
+  image: python:3.12-bookworm
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG
+  script:
+    - apt-get update -qq
+    - apt-get install -y -qq xvfb xauth xdotool imagemagick lintian libusb-1.0-0 libudev1 dbus python3-gi libglib2.0-bin >/dev/null
+    - pip install -q pillow numpy hidapi pynput python-xlib pytest ruff
+    - ruff check --select F,E9 --exclude polywollywin,rog_flare2_matrix_paint.py,parse_usbpcap.py .
+    - dbus-run-session -- xvfb-run -a -s "-screen 0 1920x1080x24" python -m pytest -q tests
+    - packaging/build-deb.sh
+    - lintian --fail-on error dist/*.deb
+  artifacts:
+    paths: [dist/*.deb]
+    expire_in: 1 week
+
+flathub:
+  stage: test
+  image: ubuntu:24.04
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes: [packaging/flathub/**/*, .gitlab-ci.yml]
+  script:
+    - apt-get update -qq && apt-get install -y -qq flatpak flatpak-builder >/dev/null
+    - flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    - flatpak install --user -y --noninteractive flathub org.gnome.Platform//51 org.gnome.Sdk//51 org.flatpak.Builder
+    # copie à la racine : en mode --sandbox, les sources doivent être dans le dossier du manifeste
+    - |
+      sed -e 's#path: \.\./\.\.#path: .#' -e 's#^  - python3-modules.json#  - packaging/flathub/python3-modules.json#' packaging/flathub/$APP.yml > $APP.yml
+    - flatpak-builder --user --force-clean --sandbox --repo=repo build $APP.yml
+    - flatpak build-bundle repo AniMeMatrix-flathub.flatpak $APP
+    - flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest $APP.yml | tee lint-manifest.txt || true
+    - flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo | tee lint-repo.txt || true
+  artifacts:
+    paths: [lint-*.txt, AniMeMatrix-flathub.flatpak]
+    expire_in: 1 week
+
+deb:
+  stage: package
+  image: curlimages/curl:latest
+  extends: .on_tag
+  needs: [tests]
+  script:
+    - *upload
+    - for f in dist/*_all.deb; do upload "$f"; done
+
+rpm:
+  stage: package
+  image: fedora:latest
+  extends: .on_tag
+  needs: []
+  script:
+    - dnf install -y -q rpm-build python3 tar gzip
+    - *upload
+    - V="${CI_COMMIT_TAG#v}"
+    - mkdir -p ~/rpmbuild/SOURCES ~/rpmbuild/SPECS
+    - tar --exclude=.git --transform "s,^\.,Anticitoyen-ROG-flare2-anime-matrix-$V," -czf ~/rpmbuild/SOURCES/Anticitoyen-ROG-flare2-anime-matrix-$V.tar.gz .
+    - sed "s/@VERSION@/$V/" packaging/rpm/$PKG.spec > ~/rpmbuild/SPECS/animematrix.spec
+    - rpmbuild -bb ~/rpmbuild/SPECS/animematrix.spec
+    - rpmbuild -bs ~/rpmbuild/SPECS/animematrix.spec   # RPM source, pour Copr
+    - for f in ~/rpmbuild/RPMS/noarch/*.rpm ~/rpmbuild/SRPMS/*.src.rpm; do upload "$f"; done
+
+arch:
+  stage: package
+  image: archlinux:latest
+  extends: .on_tag
+  needs: []
+  script:
+    - pacman -Syu --noconfirm --quiet base-devel python git curl >/dev/null
+    - *upload
+    - V="${CI_COMMIT_TAG#v}"
+    - useradd -m builder && mkdir /home/builder/pkg
+    - sed "s/@VERSION@/$V/" packaging/aur/PKGBUILD > /home/builder/pkg/PKGBUILD
+    - cp packaging/aur/animematrix.install /home/builder/pkg/
+    - chown -R builder /home/builder/pkg
+    - su builder -c "cd /home/builder/pkg && makepkg --nodeps --noconfirm"
+    # somme de contrôle réelle de l'archive des sources (pour l'AUR), puis .SRCINFO
+    - SUM=$(sha256sum /home/builder/pkg/*-"$V".tar.gz | cut -d' ' -f1)
+    - sed -i "s/^sha256sums=('SKIP')/sha256sums=('$SUM')/" /home/builder/pkg/PKGBUILD
+    - su builder -c "cd /home/builder/pkg && makepkg --printsrcinfo > .SRCINFO"
+    - mkdir -p aur/$PKG && cp /home/builder/pkg/PKGBUILD /home/builder/pkg/.SRCINFO /home/builder/pkg/animematrix.install aur/$PKG/
+    - tar -C aur -czf "aur-$V.tar.gz" $PKG
+    - for f in /home/builder/pkg/*.pkg.tar.zst "aur-$V.tar.gz"; do upload "$f"; done
+
+flatpak:
+  stage: package
+  image: ubuntu:24.04
+  extends: .on_tag
+  needs: []
+  allow_failure: true
+  script:
+    - apt-get update -qq && apt-get install -y -qq flatpak flatpak-builder curl git python3 >/dev/null
+    - *upload
+    - V="${CI_COMMIT_TAG#v}"
+    - flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    - flatpak install --user -y --noninteractive flathub org.gnome.Platform//51 org.gnome.Sdk//51
+    - |
+      sed -e 's#path: \.\./\.\.#path: .#' -e 's#^  - python3-modules.json#  - packaging/flathub/python3-modules.json#' packaging/flathub/$APP.yml > $APP.yml
+    - flatpak-builder --user --force-clean --sandbox --repo=repo build $APP.yml
+    - flatpak build-bundle repo "AniMeMatrix-$V.flatpak" $APP
+    # soumission Flathub : manifeste épinglé sur ce tag
+    - mkdir -p "flathub-$V"
+    - |
+      python3 - "$APP" "$CI_COMMIT_TAG" "$CI_COMMIT_SHA" "flathub-$V" "$CI_PROJECT_URL.git" <<'PY'
+      import sys
+      from pathlib import Path
+      app, tag, commit, out, url = sys.argv[1:]
+      text = Path(f"packaging/flathub/{app}.yml").read_text()
+      old = "      - type: dir\n        path: ../.."
+      assert old in text
+      new = f"      - type: git\n        url: {url}\n        tag: {tag}\n        commit: {commit}"
+      Path(out, f"{app}.yml").write_text(text.replace(old, new))
+      PY
+    - cp packaging/flathub/python3-modules.json "flathub-$V/"
+    - tar -czf "flathub-$V.tar.gz" "flathub-$V"
+    - for f in "AniMeMatrix-$V.flatpak" "flathub-$V.tar.gz"; do upload "$f"; done
+
+translations:
+  stage: package
+  image: alpine:latest
+  extends: .on_tag
+  needs: []
+  script:
+    - apk add -q zip curl
+    - *upload
+    # locale/_source.json : fichier de base monolingue (français) ; locale/<code>.json : une langue
+    - zip -q "translations-${CI_COMMIT_TAG#v}.zip" locale/*.json docs/TRADUIRE.md
+    - upload "translations-${CI_COMMIT_TAG#v}.zip"
+
+release:
+  stage: release
+  image: alpine:latest
+  extends: .on_tag
+  needs:
+    - deb
+    - rpm
+    - arch
+    - translations
+    - job: flatpak
+      optional: true
+  script:
+    - apk add -q curl jq
+    - V="${CI_COMMIT_TAG#v}"
+    - |
+      PID=$(curl -fsS --header "JOB-TOKEN: $CI_JOB_TOKEN" "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages?package_type=generic&package_name=animematrix&package_version=$V" | jq '.[0].id')
+    - |
+      curl -fsS --header "JOB-TOKEN: $CI_JOB_TOKEN" "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/$PID/package_files?per_page=100" > fichiers.json
+    - NOTES="packaging/notes/$CI_COMMIT_TAG.md"
+    - '[ -f "$NOTES" ] || printf "## AniMe Matrix %s\n" "$V" > "$NOTES"'
+    - |
+      {
+        cat "$NOTES"
+        printf '\n### SHA-256\n```\n'
+        jq -r '.[] | "\(.file_sha256)  \(.file_name)"' fichiers.json
+        printf '```\n\n### Soutenir le projet / Support the project\n'
+        printf '[☕ Tipeee](https://fr.tipeee.com/anticitoyen/) · [♥ PayPal](https://www.paypal.biz/C2N)\n'
+      } > description.md
+    - |
+      jq -n --arg tag "$CI_COMMIT_TAG" --rawfile desc description.md --arg base "$GENERIC/$V" --slurpfile f fichiers.json '
+        {tag_name: $tag, name: $tag, description: $desc,
+         assets: {links: [$f[0][] | {name: .file_name, url: "\($base)/\(.file_name)",
+                                    direct_asset_path: "/\(.file_name)",
+                                    link_type: (if (.file_name | test("\\.(deb|rpm|zst|flatpak)$")) then "package" else "other" end)}]}}' > release.json
+    - 'curl -fsS -X POST --header "JOB-TOKEN: $CI_JOB_TOKEN" --header "Content-Type: application/json" --data @release.json "$CI_API_V4_URL/projects/$CI_PROJECT_ID/releases" | jq -r .tag_name'
+
+# Dépôt APT signé, servi par GitLab Pages (https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix)
+pages:
+  stage: release
+  image: debian:bookworm
+  needs: [tests]
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/ && $APT_GPG_PRIVATE_KEY
+  script:
+    - apt-get update -qq && apt-get install -y -qq git gnupg dpkg-dev >/dev/null
+    - git fetch --depth=1 origin gh-pages && git worktree add pages FETCH_HEAD
+    - if [ -f "$APT_GPG_PRIVATE_KEY" ]; then gpg --batch --import "$APT_GPG_PRIVATE_KEY"; else echo "$APT_GPG_PRIVATE_KEY" | gpg --batch --import; fi
+    - |
+      KEY=$(gpg --list-secret-keys --with-colons | awk -F: '/^fpr/{print $10; exit}')
+    - packaging/apt/publier-depot.sh pages dist/*_all.deb "$KEY"
+    - cp packaging/apt/index.html pages/index.html
+    - rm -rf pages/.git pages/.gitlab-ci.yml && mv pages public
+  artifacts:
+    paths: [public]

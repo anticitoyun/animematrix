@@ -4,8 +4,9 @@
 
 # AniMe Matrix cho Linux — ROG Strix Flare II Animate
 
-[![Phát hành](https://img.shields.io/github/v/release/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest)
-[![CI](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml/badge.svg)](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/actions/workflows/ci.yml)
+[![Phát hành](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
+[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![Giấy phép MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](../../LICENSE)
 
 Điều khiển màn hình **AniMe Matrix** (312 mini-LED) của bàn phím **ASUS ROG Strix Flare II Animate** trên Linux, không cần Armoury Crate hay Windows: GIF và thư viện ảnh, đồng hồ, hiệu ứng và trình hiển thị âm thanh, trò chơi, giám sát hệ thống, thông báo màn hình nền, lên lịch theo khung giờ, trình chỉnh sửa hoạt ảnh, thư viện dùng chung, màu bàn phím đồng bộ.
@@ -103,16 +104,16 @@ ASUS chỉ cung cấp màn hình AniMe Matrix của bàn phím này trên Window
 ### Kho APT (Debian, Ubuntu, Mint, Pop!_OS…) — cập nhật bằng `apt upgrade`
 
 ```bash
-curl -fsSL https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
+curl -fsSL https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix/animematrix.gpg \
   | sudo tee /usr/share/keyrings/animematrix.gpg >/dev/null
-echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.github.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
+echo "deb [signed-by=/usr/share/keyrings/animematrix.gpg] https://anticitoyen.gitlab.io/Anticitoyen-ROG-flare2-anime-matrix stable main" \
   | sudo tee /etc/apt/sources.list.d/animematrix.list
 sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 ```
 
 Sau đó **rút phích cắm rồi cắm lại bàn phím** (quy tắc udev cấp quyền truy cập cho người dùng đang đăng nhập) và khởi chạy **AniMe Matrix** từ menu.
 
-### Định dạng khác (trang [Releases](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/releases/latest))
+### Định dạng khác (trang [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest))
 
 | Hệ thống | Tệp | Cài đặt |
 |---|---|---|
@@ -138,7 +139,7 @@ Gói này cài đặt:
 ### Từ mã nguồn
 
 ```bash
-git clone https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -321,7 +322,7 @@ packaging/build-deb.sh
 # → dist/anticitoyen-rog-flare2-anime-matrix_<version>_all.deb
 ```
 
-`packaging/install.sh` cài đặt dự án vào bất kỳ cấu trúc thư mục nào; nó được dùng cho .deb, RPM (`packaging/rpm/`), gói Arch (`packaging/aur/`) và Flatpak (`packaging/flathub/`). Mỗi khi có bản phát hành mới, GitHub sẽ tự động xây dựng RPM, gói Arch và Flatpak, đồng thời cập nhật kho APT đã ký. Số phiên bản được đọc từ `rog_flare2_core.py` (`VERSION`). Kiểm thử: `python -m pytest tests`.
+`packaging/install.sh` cài đặt dự án vào bất kỳ cấu trúc thư mục nào; nó được dùng cho .deb, RPM (`packaging/rpm/`), gói Arch (`packaging/aur/`) và Flatpak (`packaging/flathub/`). Mỗi khi có bản phát hành mới, GitLab sẽ tự động xây dựng RPM, gói Arch và Flatpak, đồng thời cập nhật kho APT đã ký. Số phiên bản được đọc từ `rog_flare2_core.py` (`VERSION`). Kiểm thử: `python -m pytest tests`.
 
 <a id="credits"></a>
 
@@ -344,4 +345,11 @@ Dự án độc lập, không liên kết với ASUS. "ROG", "AniMe Matrix" và 
 
 ## Ủng hộ dự án
 
-Báo cáo lỗi, ý tưởng và hoạt ảnh muốn chia sẻ: [Issues](https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix/issues). Bản dịch: [docs/TRADUIRE.md](../TRADUIRE.md).
+Nếu dự án này hữu ích với bạn, bạn có thể ủng hộ:
+
+- ☕ **Tipeee**: <https://fr.tipeee.com/anticitoyen/>
+- ♥ **PayPal**: <https://www.paypal.biz/C2N>
+
+Các liên kết này cũng có trong tab *Cài đặt* của trình khởi chạy.
+
+Báo cáo lỗi, ý tưởng và hoạt ảnh muốn chia sẻ: [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). Bản dịch: [docs/TRADUIRE.md](../TRADUIRE.md).

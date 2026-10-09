@@ -46,7 +46,9 @@ from rog_flare2_jeux import GAMES
 GAME_NAMES = {g.name for g in GAMES}
 
 
-PROJECT_URL = "https://github.com/AntiCitoyen/Anticitoyen-ROG-flare2-anime-matrix"
+PROJECT_URL = "https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix"
+TIPEEE_URL = "https://fr.tipeee.com/anticitoyen/"
+PAYPAL_URL = "https://www.paypal.biz/C2N"
 # Mode rejoué par le démon à l'ouverture de session (rog_flare2_demon.START_FILE)
 BOOT_MODES = {"Galerie GIF": "gif", "Horloge": "horloge", "Dernière lecture": "derniere", "Rien": "rien"}
 INTERFACE_FILE = CONFIG_DIR / "interface"
@@ -467,8 +469,12 @@ class LauncherApp(tk.Tk):
             ttk.Checkbutton(tab, text=_("Vérifier au démarrage"), variable=self.update_auto,
                             command=lambda: maj.save_state({**maj.load_state(), "auto": self.update_auto.get()})
                             ).pack(anchor="w")
-        ttk.Button(tab, text=_("Page du projet (GitHub)"),
-                   command=lambda: webbrowser.open(PROJECT_URL)).pack(fill="x", pady=(8, 0))
+        ttk.Button(tab, text=_("☕ Soutenir sur Tipeee"),
+                   command=lambda: webbrowser.open(TIPEEE_URL)).pack(fill="x", pady=(8, 4))
+        ttk.Button(tab, text=_("♥ Soutenir via PayPal"),
+                   command=lambda: webbrowser.open(PAYPAL_URL)).pack(fill="x", pady=(0, 4))
+        ttk.Button(tab, text=_("Page du projet (GitLab)"),
+                   command=lambda: webbrowser.open(PROJECT_URL)).pack(fill="x")
         return tab
 
     def set_status(self, text: str):
@@ -487,9 +493,9 @@ class LauncherApp(tk.Tk):
             self._install_result(ok, err)
         self.after(100, self._poll_status)
 
-    # --- Mises à jour (releases GitHub, rog_flare2_maj.py) ------------------
+    # --- Mises à jour (releases GitLab, rog_flare2_maj.py) ------------------
     def check_updates(self, silent: bool = False):
-        """Interroge GitHub dans un fil ; silent : vérification automatique, rien si à jour ou hors ligne."""
+        """Interroge GitLab dans un fil ; silent : vérification automatique, rien si à jour ou hors ligne."""
         if not silent:
             self.set_status(_("Recherche de mises à jour…"))
 
@@ -498,7 +504,7 @@ class LauncherApp(tk.Tk):
                 info = maj.latest(VERSION)
             except (OSError, ValueError, KeyError) as exc:
                 if not silent:
-                    self.set_status(_("Impossible de joindre GitHub : {err}").format(err=exc))
+                    self.set_status(_("Impossible de joindre GitLab : {err}").format(err=exc))
                 return
             maj.save_state({**maj.load_state(), "last": time.time()})
             self._pending_update = (info, silent)
