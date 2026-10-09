@@ -21,12 +21,12 @@ optdepends=('python-xlib: round windows (X11 SHAPE)'
             'gst-plugin-pipewire: screen mirror under Wayland'
             'python-qrcode: QR code of the web remote'
             'tkdnd: drag and drop of files')
-source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/Anticitoyen-ROG-flare2-anime-matrix-v$pkgver.tar.gz")
 sha256sums=('SKIP')
 install=animematrix.install
 
 package() {
-    cd "Anticitoyen-ROG-flare2-anime-matrix-$pkgver"
+    cd "Anticitoyen-ROG-flare2-anime-matrix-v$pkgver"
     packaging/install.sh "$pkgdir" /usr /usr/bin/python3
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
