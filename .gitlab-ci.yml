@@ -203,6 +203,10 @@ pages:
       KEY=$(gpg --list-secret-keys --with-colons | awk -F: '/^fpr/{print $10; exit}')
     - packaging/apt/publier-depot.sh pages dist/*_all.deb "$KEY"
     - cp packaging/apt/index.html pages/index.html
-    - rm -rf pages/.git pages/.gitlab-ci.yml && mv pages public
+    # la branche gh-pages garde l'historique du dépôt APT pour les tags suivants (push autorisé au jeton du job)
+    - git -C pages add -A
+    - git -C pages -c user.name=anticitoyen -c user.email=anticitoyen@users.noreply.gitlab.com commit -qm "Dépôt APT $CI_COMMIT_TAG"
+    - git -C pages push -o ci.skip "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" HEAD:gh-pages
+    - mkdir public && cp -r pages/animematrix.gpg pages/index.html pages/dists pages/pool public/
   artifacts:
     paths: [public]

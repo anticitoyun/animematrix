@@ -1,5 +1,9 @@
 anticitoyen-rog-flare2-anime-matrix (@VERSION@) stable; urgency=medium
 
+  * Projet déplacé sur GitLab (gitlab.com/anticitoyen) : mises à jour
+    intégrées, bibliothèque d'animations, dépôt APT (anticitoyen.gitlab.io)
+    et liens du lanceur pointent vers GitLab.
+  * Réglages : boutons de soutien Tipeee et PayPal.
   * Démon : après une mise à jour du paquet, le lanceur et animematrix-ctl
     rechargent l'unité systemd du démon (daemon-reload) si elle a changé,
     avant de le redémarrer ; sans cela systemd gardait l'ancienne unité.
