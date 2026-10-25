@@ -106,7 +106,8 @@ def notes_excerpt(body: str, lang: str, max_lines: int = 12) -> str:
 
 def download(info: dict, progress=None) -> Path:
     """Télécharge le .deb dans ~/.cache/animematrix ; progress(pourcent) ; vérifie le SHA-256."""
-    if not info.get("deb_url"):
+    # Seul le dépôt du projet fournit le paquet : une adresse ailleurs est rejetée sans téléchargement.
+    if not (info.get("deb_url") or "").startswith("https://gitlab.com/"):
         raise OSError(_("pas de paquet .deb dans cette release"))
     if not re.fullmatch(r"[0-9a-f]{64}", info.get("sha256") or ""):
         raise OSError(_("empreinte SHA-256 absente : paquet rejeté"))

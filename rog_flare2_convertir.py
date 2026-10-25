@@ -44,7 +44,9 @@ def destination(src: Path, sortie: Path | None) -> Path:
 
 def convertir(src: Path, dst: Path) -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
-    cmd = [binaire_imagemagick(), str(src), *ARGUMENTS, str(dst)]
+    # Chemins absolus : un nom commençant par « - » ou « @ » ne doit jamais être lu comme une option
+    # ou comme un fichier d'arguments par ImageMagick.
+    cmd = [binaire_imagemagick(), str(src.resolve()), *ARGUMENTS, str(dst.resolve())]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
     if r.returncode != 0 or not dst.exists():
         raise RuntimeError((r.stderr or r.stdout).strip().splitlines()[-1] if (r.stderr or r.stdout).strip() else f"rc={r.returncode}")

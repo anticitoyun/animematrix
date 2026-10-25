@@ -167,11 +167,24 @@ PLUGIN_ERRORS: dict[str, str] = {}  # fichier -> erreur de chargement
 PLUGIN_NAMES: dict[str, dict[str, str]] = {}  # nom interne -> noms traduits fournis par l'extension
 
 
+def _extension_sure(path: Path) -> bool:
+    """Une extension est du code exécuté au lancement : seulement si elle appartient à l'utilisateur
+    et qu'aucun autre compte ne peut l'écrire (sinon quelqu'un d'autre y glisserait son code)."""
+    try:
+        information = path.stat()
+    except OSError:  # fichier disparu entre la liste et le contrôle
+        return False
+    return information.st_uid == os.getuid() and not information.st_mode & 0o022
+
+
 def load_plugins(folder: Path = PLUGIN_DIR) -> list[str]:
     """Charge les extensions ; renvoie les noms des effets ajoutés. Une extension en erreur est ignorée."""
     import importlib.util
     added = []
     for path in sorted(folder.glob("*.py")) if folder.is_dir() else []:
+        if not _extension_sure(path):
+            PLUGIN_ERRORS[path.name] = "fichier ignoré : autre propriétaire ou écriture ouverte à d'autres"
+            continue
         try:
             spec = importlib.util.spec_from_file_location(f"animematrix_ext_{path.stem}", path)
             module = importlib.util.module_from_spec(spec)

@@ -88,3 +88,21 @@ def test_remote_only_allows_safe_commands(monkeypatch):
                 {"cmd": "play", "show": {"type": "webcam"}}, {"cmd": "play", "show": {"type": "ecran"}},
                 {"cmd": "play", "show": "horloge"}, ["play"]):
         assert not ok(bad), bad
+
+
+def test_remote_refuses_sensitive_favorites(monkeypatch):
+    """Un favori webcam, miroir d'écran ou vidéo n'est jamais lancé depuis le téléphone."""
+    import rog_flare2_listes as L
+    sensibles = [{"type": "webcam", "silhouette": False}, {"type": "ecran", "mode": "ecran"},
+                 {"type": "video", "path": "/home/x/film.mp4"}]
+    monkeypatch.setattr(L, "load_favorites", lambda: [{"label": "s", "show": s} for s in sensibles])
+    for show in sensibles:
+        assert not R.remote_allowed({"cmd": "play", "show": show}), show
+
+
+def test_remote_json_refuses_non_finite_numbers():
+    """NaN et Infinity sont valides pour Python mais jamais pour une requête de télécommande."""
+    from rog_flare2_core import json_strict
+    for texte in ('{"cmd": "speed", "value": NaN}', '{"cmd": "notify", "duration": Infinity}'):
+        with pytest.raises(ValueError):
+            json_strict(texte)

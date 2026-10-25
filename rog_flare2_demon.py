@@ -43,10 +43,22 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from rog_flare2_core import VERSION, CONFIG_DIR, gallery_dir, media_files, pick_version, play_clock, play_file  # noqa: E402
+from rog_flare2_core import (  # noqa: E402
+    CONFIG_DIR,
+    VERSION,
+    gallery_dir,
+    json_strict,
+    media_files,
+    pick_version,
+    play_clock,
+    play_file,
+)
 from rog_flare2_matrix_paint import FB_OFFSET, FRAME_SIZE, LED_COUNT, PREFIX, FlareTransport  # noqa: E402
 
 RUNTIME = Path(os.environ.get("XDG_RUNTIME_DIR") or f"/tmp/animematrix-{os.getuid()}")
+# Bornes des valeurs envoyées par les clients (socket, API HTTP, télécommande).
+SPEED_MIN, SPEED_MAX = 0.1, 10.0
+NOTIFY_MAX_SECONDS, NOTIFY_MAX_CHARS = 60.0, 500
 SOCKET_PATH = RUNTIME / "animematrix.sock"
 SHOW_FILE = CONFIG_DIR / "lecture.json"  # dernière lecture (rejouée au démarrage si « derniere »)
 START_FILE = CONFIG_DIR / "demarrage"
@@ -593,7 +605,7 @@ class Daemon:
             self._save_state()
             return {"ok": True}
         if cmd == "speed":
-            self.speed = float(req["value"])
+            self.speed = min(max(float(req["value"]), SPEED_MIN), SPEED_MAX)
             if self.show and self.show.get("type") == "effet":
                 self.show["speed"] = self.speed
             return {"ok": True}
@@ -631,8 +643,9 @@ class Daemon:
             from rog_flare2_ventilateurs import load_config as fan_config
             self.fans.start(fan_config())
             return {"ok": True, "notifications": self.notifs.start(load_config())}
-        if cmd == "notify":
-            self.notify(str(req.get("text", "")), float(req.get("duration", 6)))
+        if cmd == "notify":  # texte et durée bornés : une requête ne peut pas figer l'écran
+            duree = min(max(float(req.get("duration", 6)), 0.0), NOTIFY_MAX_SECONDS)
+            self.notify(str(req.get("text", ""))[:NOTIFY_MAX_CHARS], duree)
             return {"ok": True}
         if cmd == "frame":
             leds = self.screen.last[FB_OFFSET:FB_OFFSET + LED_COUNT]
@@ -697,7 +710,7 @@ class Handler(socketserver.StreamRequestHandler):
     def handle(self):
         for line in self.rfile:
             try:
-                resp = self.server.daemon_ref.handle(json.loads(line))
+                resp = self.server.daemon_ref.handle(json_strict(line))
             except Exception as exc:
                 resp = {"ok": False, "error": str(exc)}
             self.wfile.write((json.dumps(resp, ensure_ascii=False) + "\n").encode())
@@ -736,7 +749,7 @@ def serve_http(daemon: Daemon, port: int):
                 self.send_error(413)
                 return
             try:
-                body = json.loads(self.rfile.read(size))
+                body = json_strict(self.rfile.read(size))
                 resp = daemon.handle(body)
             except Exception as exc:
                 resp = {"ok": False, "error": str(exc)}

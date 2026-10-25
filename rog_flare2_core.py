@@ -6,6 +6,7 @@ commande ; ne dépend pas de Tk.
 from __future__ import annotations
 
 import datetime
+import json
 import os
 import subprocess
 import sys
@@ -36,6 +37,30 @@ MEDIA_EXTENSIONS = {".gif", ".png", ".jpg", ".jpeg", ".bmp", ".webp"} | VIDEO_EX
 STILL_SECONDS = 5.0  # durée d'affichage d'une image fixe dans une galerie
 CONFIG_DIR = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "rog-flare2"
 GALLERY_FILE = CONFIG_DIR / "galerie"  # dossier lu par la galerie (lanceur et service)
+
+
+def ecrire_prive(chemin: Path, contenu: bytes | str) -> None:
+    """Écrit un fichier de réglages lisible par le seul utilisateur, dès sa création.
+
+    Le fichier temporaire est créé avec les droits 0600 (O_EXCL : jamais un fichier préexistant ni un
+    lien symbolique) puis remplace l'original : un mot de passe ou un jeton n'est jamais lisible par
+    d'autres comptes, même pendant l'écriture.
+    """
+    chemin.parent.mkdir(parents=True, exist_ok=True)
+    donnees = contenu.encode("utf-8") if isinstance(contenu, str) else contenu
+    temporaire = chemin.with_name(chemin.name + ".tmp")
+    temporaire.unlink(missing_ok=True)
+    descripteur = os.open(temporaire, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descripteur, "wb") as fichier:
+        fichier.write(donnees)
+    temporaire.replace(chemin)
+
+
+def json_strict(texte: str | bytes):
+    """json.loads qui refuse NaN et Infinity : Python les accepte, une requête ne doit jamais les porter."""
+    def refuser(nom: str):
+        raise ValueError(f"constante JSON refusée : {nom}")
+    return json.loads(texte, parse_constant=refuser)
 
 
 def gallery_dir() -> Path:

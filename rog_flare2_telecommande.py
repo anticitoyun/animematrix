@@ -17,10 +17,14 @@ import socket
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-from rog_flare2_core import CONFIG_DIR
+from rog_flare2_core import CONFIG_DIR, ecrire_prive, json_strict
 
 CONFIG_FILE = CONFIG_DIR / "telecommande.json"
 MAX_BODY = 64 * 1024
+# Politique de la page : script et style en ligne seulement (la page n'en charge aucun autre),
+# aucune requête hors de l'origine, aucun cadre, aucun formulaire.
+PAGE_CSP = ("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; "
+            "base-uri 'none'; form-action 'none'; frame-ancestors 'none'")
 
 
 def load_config() -> dict:
@@ -36,9 +40,8 @@ def load_config() -> dict:
 
 
 def save_config(cfg: dict) -> None:
-    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
-    CONFIG_FILE.write_text(json.dumps(cfg, indent=1))
-    CONFIG_FILE.chmod(0o600)
+    """Écrit la configuration (contient le jeton) : fichier privé dès sa création."""
+    ecrire_prive(CONFIG_FILE, json.dumps(cfg, indent=1))
 
 
 def new_token() -> str:
@@ -91,11 +94,15 @@ def page() -> bytes:
 REMOTE_COMMANDS = {"ping", "status", "frame", "catalogue", "play", "galerie", "stop", "brightness", "speed",
                    "params", "notify", "key"}
 REMOTE_SHOWS = {"horloge", "effet", "liste", "clavier"}
+REMOTE_FAVORITE_SHOWS = {"gif", "effet", "liste"}
 
 
 def remote_allowed(req) -> bool:
     """Ce que le téléphone peut demander : pas de fichiers arbitraires (GIF, mémoire du clavier), pas de
-    webcam ni de miroir d'écran, pas d'arrêt du démon ni de réglages ; un GIF seulement s'il est en favori."""
+    webcam ni de miroir d'écran, pas d'arrêt du démon ni de réglages.
+
+    Un favori n'est accepté que s'il est un GIF, un effet ou une liste : un favori webcam, miroir d'écran
+    ou vidéo n'est jamais lancé à distance (même enregistré par l'utilisateur)."""
     if not isinstance(req, dict) or req.get("cmd") not in REMOTE_COMMANDS:
         return False
     if req["cmd"] != "play":
@@ -105,6 +112,8 @@ def remote_allowed(req) -> bool:
         return False
     if show.get("type") in REMOTE_SHOWS:
         return True
+    if show.get("type") not in REMOTE_FAVORITE_SHOWS:
+        return False
     from rog_flare2_listes import load_favorites
     return any(f.get("show") == show for f in load_favorites())
 
@@ -133,6 +142,7 @@ class RemoteServer:
                 self.send_header("X-Content-Type-Options", "nosniff")
                 self.send_header("X-Frame-Options", "DENY")
                 self.send_header("Referrer-Policy", "no-referrer")
+                self.send_header("Content-Security-Policy", PAGE_CSP)
                 self.end_headers()
                 self.wfile.write(body)
 
@@ -154,7 +164,7 @@ class RemoteServer:
                     self.send_error(413)
                     return
                 try:
-                    req = json.loads(self.rfile.read(size))
+                    req = json_strict(self.rfile.read(size))
                     resp = server.handle(req) if remote_allowed(req) else {"ok": False, "error": "refusé"}
                 except Exception:
                     resp = {"ok": False, "error": "requête invalide"}

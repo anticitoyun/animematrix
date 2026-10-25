@@ -5,6 +5,7 @@ import zipfile
 import pytest
 
 import rog_flare2_sauvegarde as S
+from rog_flare2_core import ecrire_prive
 
 
 def make_config(root):
@@ -19,18 +20,41 @@ def make_config(root):
 def test_export_without_secrets_then_restore(tmp_path, monkeypatch):
     src, dst = tmp_path / "a", tmp_path / "b"
     make_config(src)
+    (src / "effets" / "mon_effet.py").unlink()  # sans extension : la restauration est autorisée
     archive = tmp_path / "r.zip"
-    assert S.export(archive, root=src) == 5
+    assert S.export(archive, root=src) == 4
     raw = b"".join(zipfile.ZipFile(archive).read(n) for n in zipfile.ZipFile(archive).namelist())
     assert b"SECRET" not in raw
     dst.mkdir()
     (dst / "telecommande.json").write_text(json.dumps({"jeton": "JETON-DU-NOUVEAU-PC"}))
     monkeypatch.setattr(S, "BACKUP_DIR", tmp_path / "copies")
     n, before = S.restore(archive, root=dst)
-    assert n == 5 and before is not None and before.exists()
+    assert n == 4 and before is not None and before.exists()
     assert json.loads((dst / "rgb.json").read_text())["perso"] == {"18": "#ff0000"}
     assert json.loads((dst / "telecommande.json").read_text()) == {"actif": True, "jeton": "JETON-DU-NOUVEAU-PC"}
-    assert (dst / "effets" / "mon_effet.py").exists() and (dst / "telecommande.json").stat().st_mode & 0o077 == 0
+    assert (dst / "telecommande.json").stat().st_mode & 0o077 == 0
+
+
+def test_restore_refuses_python_extensions(tmp_path, monkeypatch):
+    """Une extension Python restaurée serait exécutée au lancement : l'archive est refusée, rien n'est écrit."""
+    make_config(tmp_path / "a")
+    archive = tmp_path / "r.zip"
+    S.export(archive, root=tmp_path / "a")
+    dst = tmp_path / "b"
+    dst.mkdir()
+    monkeypatch.setattr(S, "BACKUP_DIR", tmp_path / "copies")
+    with pytest.raises(ValueError, match="extension Python"):
+        S.restore(archive, root=dst)
+    assert list(dst.iterdir()) == []
+
+
+def test_private_files_are_created_private(tmp_path):
+    """Un fichier de réglages avec un secret n'est jamais lisible par d'autres comptes, même à sa création."""
+    cible = tmp_path / "telecommande.json"
+    ecrire_prive(cible, '{"jeton": "X"}')
+    assert cible.stat().st_mode & 0o077 == 0
+    ecrire_prive(cible, b'{"jeton": "Y"}')  # remplacement : même garantie
+    assert cible.read_bytes() == b'{"jeton": "Y"}' and cible.stat().st_mode & 0o077 == 0
 
 
 def test_secrets_only_on_request(tmp_path):
@@ -39,7 +63,7 @@ def test_secrets_only_on_request(tmp_path):
     assert b"SECRET-OBS" in zipfile.ZipFile(tmp_path / "s.zip").read("voyants.json")
 
 
-@pytest.mark.parametrize("name", ["../evil.json", "/etc/passwd", "a/b/c.json", "sauvegardes/x.zip"])
+@pytest.mark.parametrize("name", ["../evil.json", "/etc/passwd", "a/b/c.json", "sauvegardes/x.zip", "effets/x.py"])
 def test_suspicious_archives_are_refused(tmp_path, name):
     archive = tmp_path / "x.zip"
     with zipfile.ZipFile(archive, "w") as z:

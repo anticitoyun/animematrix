@@ -23,7 +23,7 @@ import socket
 import subprocess
 import threading
 
-from rog_flare2_core import CONFIG_DIR
+from rog_flare2_core import CONFIG_DIR, ecrire_prive
 from rog_flare2_matrix_paint import PHYSICAL_CALIBRATED_ORDER
 
 CONFIG_FILE = CONFIG_DIR / "voyants.json"
@@ -40,9 +40,8 @@ def load_config() -> dict:
 
 
 def save_config(cfg: dict) -> None:
-    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
-    CONFIG_FILE.write_text(json.dumps(cfg, ensure_ascii=False, indent=1))
-    CONFIG_FILE.chmod(0o600)  # mot de passe OBS éventuel
+    """Écrit la configuration (mot de passe OBS éventuel) : fichier privé dès sa création."""
+    ecrire_prive(CONFIG_FILE, json.dumps(cfg, ensure_ascii=False, indent=1))
 
 
 def _badge_leds(slot: int) -> list[int]:

@@ -17,7 +17,7 @@ import time
 import zipfile
 from pathlib import Path
 
-from rog_flare2_core import CONFIG_DIR
+from rog_flare2_core import CONFIG_DIR, ecrire_prive
 
 BACKUP_DIR = CONFIG_DIR / "sauvegardes"
 SECRETS = {"telecommande.json": ("jeton",), "voyants.json": ("obs_mot_de_passe",)}
@@ -72,37 +72,47 @@ def check(archive: Path) -> list[str]:
             if i.is_dir() or not SAFE_NAME.fullmatch(name) or ".." in name.split("/") or i.file_size > MAX_FILE \
                     or name.split("/")[0] in SKIP:
                 raise ValueError(f"entrée refusée dans l'archive : {name[:60]}")
+            # Une extension est du code Python exécuté au lancement : jamais restaurée depuis une archive.
+            if name.endswith(".py"):
+                raise ValueError(f"extension Python refusée dans l'archive : {name[:60]} (à copier à la main)")
     return [n for n in names if n != MARK]
+
+
+def _lire_borne(archive: zipfile.ZipFile, name: str) -> bytes:
+    """Contenu d'une entrée, lu au plus MAX_FILE octets : la taille déclarée dans un zip peut mentir."""
+    with archive.open(name) as entree:
+        donnees = entree.read(MAX_FILE + 1)
+    if len(donnees) > MAX_FILE:
+        raise ValueError(f"entrée trop grande : {name[:60]}")
+    return donnees
 
 
 def restore(archive: Path, root: Path = CONFIG_DIR) -> tuple[int, Path | None]:
     """Remplace les réglages par ceux de l'archive, après en avoir sauvegardé une copie.
     Les secrets absents de l'archive (jeton, mot de passe OBS) sont conservés."""
     names = check(archive)
+    # Tout est lu et validé avant la première écriture : une archive défectueuse ne laisse rien à moitié.
+    with zipfile.ZipFile(archive) as z:
+        contenus = {name: _lire_borne(z, name) for name in names}
+    if sum(len(donnees) for donnees in contenus.values()) > MAX_TOTAL:
+        raise ValueError("archive trop grande")
     before = None
     if root.exists() and any(True for _ in _files(root)):
         BACKUP_DIR.mkdir(parents=True, exist_ok=True)
         before = BACKUP_DIR / time.strftime("avant-restauration-%Y%m%d-%H%M%S.zip")
         export(before, secrets=True, root=root)
-    with zipfile.ZipFile(archive) as z:
-        for name in names:
-            data = z.read(name)
-            target = root / name
-            if name in SECRETS and target.exists():
-                try:  # secrets gardés quand l'archive n'en contient pas
-                    new, old = json.loads(data), json.loads(target.read_bytes())
-                    for key in SECRETS[name]:
-                        if key not in new and key in old:
-                            new[key] = old[key]
-                    data = json.dumps(new, ensure_ascii=False, indent=1).encode()
-                except ValueError:
-                    pass
-            target.parent.mkdir(parents=True, exist_ok=True)
-            tmp = target.with_name(target.name + ".tmp")
-            tmp.write_bytes(data)
-            tmp.replace(target)
-            if name in SECRETS:
-                target.chmod(0o600)
+    for name, data in contenus.items():
+        target = root / name
+        if name in SECRETS and target.exists():
+            try:  # secrets gardés quand l'archive n'en contient pas
+                nouveau, ancien = json.loads(data), json.loads(target.read_bytes())
+                for key in SECRETS[name]:
+                    if key not in nouveau and key in ancien:
+                        nouveau[key] = ancien[key]
+                data = json.dumps(nouveau, ensure_ascii=False, indent=1).encode()
+            except ValueError:
+                pass
+        ecrire_prive(target, data)
     return len(names), before
 
 
