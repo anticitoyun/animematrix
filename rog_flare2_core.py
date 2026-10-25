@@ -29,7 +29,7 @@ try:
 except ImportError:
     Image = None
 
-VERSION = "2.2.2"  # version unique du projet (paquet, lanceur, démon, mises à jour)
+VERSION = "2.2.3"  # version unique du projet (paquet, lanceur, démon, mises à jour)
 MAX_ROW_WIDTH = max(PHYSICAL_ROW_COUNTS)
 NUM_ROWS = len(PHYSICAL_ROW_COUNTS)
 VIDEO_EXTENSIONS = {".mp4", ".webm", ".mkv", ".mov", ".avi", ".m4v"}  # lues par ffmpeg (rog_flare2_video)

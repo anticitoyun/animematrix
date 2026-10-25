@@ -174,7 +174,10 @@ def _extension_sure(path: Path) -> bool:
         information = path.stat()
     except OSError:  # fichier disparu entre la liste et le contrôle
         return False
-    return information.st_uid == os.getuid() and not information.st_mode & 0o022
+    if information.st_uid != os.getuid() or information.st_mode & 0o002:  # écrit par tout le monde
+        return False
+    # écrit par son groupe (umask 002 : groupe personnel de l'utilisateur) : toléré seulement s'il est le sien
+    return not (information.st_mode & 0o020 and information.st_gid != os.getgid())
 
 
 def load_plugins(folder: Path = PLUGIN_DIR) -> list[str]:

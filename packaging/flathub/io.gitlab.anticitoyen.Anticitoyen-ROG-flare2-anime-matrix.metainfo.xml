@@ -43,6 +43,7 @@
   <supports><control>pointing</control><control>keyboard</control></supports>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="2.2.3" date="2026-10-25"><description><p>Security fixes: a backup containing a Python extension is refused on restore, secret settings are created private, remote control refuses sensitive favorites and non-finite JSON, daemon speed and notification limits, extensions loaded only from their owner, updates only from gitlab.com.</p></description></release>
     <release version="2.2.2" date="2026-10-09"><description><p>The project moved to GitLab: built-in updates, the animation library, the APT repository and the launcher links now point to GitLab. Settings: Tipeee and PayPal support buttons.</p></description></release>
     <release version="2.2.1" date="2026-09-30"><description><p>After a package update, the daemon's systemd unit is reloaded before the daemon restarts, so changes to the unit (such as returning the fans to the firmware after a crash) take effect.</p></description></release>
     <release version="2.2.0" date="2026-09-30"><description><p>PC fan control: motherboard (Nuvoton nct67xx), NVIDIA cards and Corsair HXi / RMi power supplies, automatic, fixed speed or temperature curve, with safeguards. New command: animematrix-ctl infos (keyboard firmware and layout).</p></description></release>

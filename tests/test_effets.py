@@ -58,6 +58,16 @@ def test_plugins_load_and_isolate_errors(tmp_path):
     assert "casse.py" in E.PLUGIN_ERRORS
 
 
+def test_extension_writable_by_others_is_refused(tmp_path):
+    """Une extension écrite par un autre compte serait du code exécuté à sa place : refusée."""
+    fichier = tmp_path / "ouverte.py"
+    fichier.write_text("")
+    fichier.chmod(0o646)
+    assert not E._extension_sure(fichier)
+    fichier.chmod(0o644)
+    assert E._extension_sure(fichier)
+
+
 def test_example_plugin_runs():
     from pathlib import Path
     added = E.load_plugins(Path(__file__).resolve().parent.parent / "examples" / "effets")

@@ -28,6 +28,7 @@ GENERIC_FILE = re.compile(r"/projects/(\d+)/packages/generic/([^/]+)/([^/]+)/([^
 CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "animematrix"
 STATE_FILE = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "rog-flare2" / "maj.json"
 CHECK_EVERY = 24 * 3600  # vérification automatique : au plus une fois par jour
+SOURCE_PAQUETS = "https://gitlab.com/"  # seule adresse d'où un paquet est téléchargé
 
 
 def parse_version(text: str) -> tuple[int, ...]:
@@ -107,7 +108,7 @@ def notes_excerpt(body: str, lang: str, max_lines: int = 12) -> str:
 def download(info: dict, progress=None) -> Path:
     """Télécharge le .deb dans ~/.cache/animematrix ; progress(pourcent) ; vérifie le SHA-256."""
     # Seul le dépôt du projet fournit le paquet : une adresse ailleurs est rejetée sans téléchargement.
-    if not (info.get("deb_url") or "").startswith("https://gitlab.com/"):
+    if not (info.get("deb_url") or "").startswith(SOURCE_PAQUETS):
         raise OSError(_("pas de paquet .deb dans cette release"))
     if not re.fullmatch(r"[0-9a-f]{64}", info.get("sha256") or ""):
         raise OSError(_("empreinte SHA-256 absente : paquet rejeté"))

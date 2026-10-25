@@ -1,5 +1,15 @@
 anticitoyen-rog-flare2-anime-matrix (@VERSION@) stable; urgency=medium
 
+  * Sécurité : la restauration d'une sauvegarde est refusée si elle contient
+    une extension Python (exécutée au lancement) ; archive validée avant écriture.
+  * Sécurité : jeton de télécommande et mot de passe OBS créés en 0600 ;
+    favoris webcam, écran et vidéo non lançables à distance ; JSON strict.
+  * Sécurité : vitesse du démon bornée ; notifications limitées à 60 s et 500 caractères.
+  * Sécurité : extensions chargées seulement si elles appartiennent à l'utilisateur
+    et ne sont pas inscriptibles par d'autres ; mises à jour : .deb accepté
+    seulement depuis gitlab.com.
+  * Sécurité : assistant root des ventilateurs (chiffres ASCII) ; conversion GIF
+    avec chemins absolus.
   * Projet déplacé sur GitLab (gitlab.com/anticitoyen) : mises à jour
     intégrées, bibliothèque d'animations, dépôt APT (anticitoyen.gitlab.io)
     et liens du lanceur pointent vers GitLab.

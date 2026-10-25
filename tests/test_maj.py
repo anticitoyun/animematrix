@@ -38,7 +38,7 @@ def test_notes_excerpt_picks_language():
 
 
 @pytest.fixture
-def deb_server(tmp_path):
+def deb_server(tmp_path, monkeypatch):
     payload = b"paquet factice" * 1000
     (tmp_path / "x_all.deb").write_bytes(payload)
 
@@ -51,6 +51,7 @@ def deb_server(tmp_path):
 
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), H)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
+    monkeypatch.setattr(maj, "SOURCE_PAQUETS", "http://127.0.0.1:")  # serveur local à la place de gitlab.com
     yield f"http://127.0.0.1:{srv.server_port}/x_all.deb", hashlib.sha256(payload).hexdigest()
     srv.shutdown()
 
@@ -68,6 +69,14 @@ def test_download_rejects_bad_checksum(deb_server):
     with pytest.raises(OSError):
         maj.download({"deb_url": url, "deb_name": "y_all.deb", "sha256": "0" * 64})
     assert not (maj.CACHE_DIR / "y_all.deb").exists()
+
+
+def test_download_refuses_other_hosts():
+    """Un paquet hors de gitlab.com est refusé avant toute connexion."""
+    info = {"deb_url": "https://example.com/z_all.deb", "deb_name": "z_all.deb", "sha256": "0" * 64}
+    with pytest.raises(OSError):
+        maj.download(info)
+    assert not (maj.CACHE_DIR / "z_all.deb").exists()
 
 
 def test_state_and_due():
