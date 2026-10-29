@@ -349,6 +349,7 @@ Si ce projet vous rend service, vous pouvez le soutenir :
 
 - ☕ **Tipeee** : <https://fr.tipeee.com/anticitoyen/>
 - ♥ **PayPal** : <https://www.paypal.biz/C2N>
+- 🐙 **GitHub** (bouton *Sponsor*) : <https://github.com/AntiCitoyen/animematrix>
 
 Ces liens sont aussi dans l'onglet *Réglages* du lanceur.
 
