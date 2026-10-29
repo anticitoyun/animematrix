@@ -4,8 +4,7 @@
 
 # AniMe Matrix pour Linux — ROG Strix Flare II Animate
 
-[![Release](https://img.shields.io/gitlab/v/release/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest)
-[![CI](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/badges/main/pipeline.svg)](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/pipelines)
+[![Release](https://img.shields.io/github/v/release/anticitoyun/animematrix)](https://github.com/anticitoyun/animematrix/releases/latest)
 [![Tipeee](https://img.shields.io/badge/Tipeee-soutenir-E8344E)](https://fr.tipeee.com/anticitoyen/) [![PayPal](https://img.shields.io/badge/PayPal-soutenir-0070BA?logo=paypal&logoColor=white)](https://www.paypal.biz/C2N)
 [![Licence MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 
@@ -113,7 +112,7 @@ sudo apt update && sudo apt install anticitoyen-rog-flare2-anime-matrix
 
 Puis **débrancher et rebrancher le clavier** (la règle udev donne l'accès à l'utilisateur connecté) et lancer **AniMe Matrix** depuis le menu.
 
-### Autres formats (page [Releases](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/releases/permalink/latest))
+### Autres formats (page [Releases](https://github.com/anticitoyun/animematrix/releases/latest))
 
 | Système | Fichier | Installation |
 |---|---|---|
@@ -139,7 +138,7 @@ Le paquet installe :
 ### Depuis les sources
 
 ```bash
-git clone https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix.git
+git clone https://github.com/anticitoyun/animematrix.git
 cd Anticitoyen-ROG-flare2-anime-matrix
 python3 -m venv .venv
 .venv/bin/pip install hidapi pillow numpy pynput python-xlib
@@ -353,4 +352,4 @@ Si ce projet vous rend service, vous pouvez le soutenir :
 
 Ces liens sont aussi dans l'onglet *Réglages* du lanceur.
 
-Rapports de bugs, idées et animations à partager : [Issues](https://gitlab.com/anticitoyen/Anticitoyen-ROG-flare2-anime-matrix/-/issues). Traductions : [docs/TRADUIRE.md](docs/TRADUIRE.md).
+Rapports de bugs, idées et animations à partager : [Issues](https://github.com/anticitoyun/animematrix/issues). Traductions : [docs/TRADUIRE.md](docs/TRADUIRE.md).
